@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:tx="http://www.springframework.org/schema/tx"
+             xmlns:security="http://www.springframework.org/schema/security"
+             xmlns:aop="http://www.springframework.org/schema/aop"
+             xmlns:c="http://www.springframework.org/schema/c" xmlns:task="http://www.springframework.org/schema/task"
+             xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+
+    <annotation-driven/>
+    <resources mapping="/resources/**" location="/resources/" />
+
+    <context:component-scan base-package="com.rog.webshop"/>
+
+    <beans:bean id="tilesConfigurer"
+                class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <beans:property name="definitions">
+            <beans:list>
+                <beans:value>/WEB-INF/tiles.xml</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+    <beans:bean id="tilesViewResolver"
+                class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <beans:property name="viewClass">
+            <beans:value>
+                org.springframework.web.servlet.view.tiles3.TilesView
+            </beans:value>
+        </beans:property>
+        <beans:property name="order" value="0" />
+    </beans:bean>
+
+</beans>
