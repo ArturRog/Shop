@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="org.apache.servicemix.bundles:org.apache.servicemix.bundles.commons-dbcp:1.4_3" type="repository">
+    <properties maven-id="org.apache.servicemix.bundles:org.apache.servicemix.bundles.commons-dbcp:1.4_3" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/org.apache.servicemix.bundles.commons-dbcp-1.4_3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-pool-1.5.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

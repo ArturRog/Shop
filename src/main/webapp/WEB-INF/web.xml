@@ -8,12 +8,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring/root-context.xml</param-value>
-        <param-value>/WEB-INF/spring/security-context.xml</param-value>
     </context-param>
-    <!--<context-param>-->
-        <!--<param-name>spring.profiles.active</param-name>-->
-        <!--<param-value>production</param-value>-->
-    <!--</context-param>-->
 
     <servlet>
         <servlet-name>ShopServlet</servlet-name>

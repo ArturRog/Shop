@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+<tiles-definitions>
+
+    <!-- Home page and verification stage definitions -->
+
+    <definition name="shop.base" template="/WEB-INF/views/definitions/layout.jsp">
+        <put-attribute name="includes" value=""></put-attribute>
+        <put-attribute name="title" value="WebShop"></put-attribute>
+        <put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/body.jsp"></put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"></put-attribute>
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/menu.jsp"></put-attribute>
+    </definition>
+
+
+    <definition name="welcome" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/welcome.jsp"></put-attribute>
+    </definition>
+
+
+    <definition name="login" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/login.jsp"></put-attribute>
+    </definition>
+
+
+    <definition name="admin" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/admin.jsp"></put-attribute>
+    </definition>
+
+
+    <definition name="dba" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/dba.jsp"></put-attribute>
+    </definition>
+
+
+    <definition name="accessDenied" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/accessDenied.jsp"></put-attribute>
+    </definition>
+
+
+
+
+
+</tiles-definitions>
