@@ -1,5 +1,6 @@
 package com.rog.webshop.service;
 
+
 import com.rog.webshop.model.User;
 import com.rog.webshop.model.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service("customUserDetailsService")
-public class CustomUserDetailsService implements UserDetailsService{
+public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserService userService;
