@@ -40,7 +40,7 @@
         <property name="dataSource" ref="dataSource"></property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect" >${hibernate.dialect}</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
             </props>
@@ -52,11 +52,13 @@
         </property>
     </bean>
 
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
 
-    <bean id="customUserDetailsService"
-          class="com.rog.webshop.service.CustomUserDetailsService" />
+    <bean id="customUserDetailsService" class="com.rog.webshop.service.CustomUserDetailsService"/>
 
-    <security:authentication-manager >
+    <bean id="customSuccessHandler" class="com.rog.webshop.configuration.CustomSuccessHandler"/>
+
+    <security:authentication-manager>
         <security:authentication-provider user-service-ref="customUserDetailsService"/>
     </security:authentication-manager>
 
@@ -64,21 +66,18 @@
     <security:http use-expressions="true" auto-config="true">
         <!--<security:csrf disabled="true"/>-->
         <!-- Login system config -->
-        <security:intercept-url pattern="/" access="permitAll" />
-        <security:intercept-url pattern="/home" access="permitAll" />
-        <security:intercept-url pattern="/admin**" access="hasRole('ADMIN')" />
-        <security:intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')" />
-        <security:form-login  login-page="/login"
-                     username-parameter="ssoId"
-                     password-parameter="password"
-                     authentication-failure-url="/Access_Denied"
-                              authentication-failure-forward-url="/Access_Denied"/>
-        <security:csrf/>
+        <security:intercept-url pattern="/" access="permitAll"/>
+        <security:intercept-url pattern="/home" access="permitAll"/>
+        <security:intercept-url pattern="/admin" access="hasRole('ADMIN')"/>
+        <security:intercept-url pattern="/db" access="hasRole('ADMIN') and hasRole('DBA')"/>
+        <security:form-login login-page="/login"
+                             username-parameter="ssoId"
+                             password-parameter="password"
+                             authentication-success-handler-ref="customSuccessHandler"/>
+        <security:access-denied-handler error-page="/Access_Denied"/>
+        <security:csrf disabled="true"/>
     </security:http>
 
     <security:global-method-security secured-annotations="enabled"></security:global-method-security>
 
-    <bean id="passwordEncoder"
-          class="org.springframework.security.crypto.password.StandardPasswordEncoder">
-    </bean>
 </beans>
