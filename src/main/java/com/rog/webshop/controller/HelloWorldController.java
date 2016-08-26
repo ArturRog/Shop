@@ -74,6 +74,7 @@ public class HelloWorldController {
 	public String newRegistration(ModelMap model) {
 		User user = new User();
 		model.addAttribute("user", user);
+
 		return "newuser";
 	}
 
@@ -81,32 +82,40 @@ public class HelloWorldController {
 	 * This method will be called on form submission, handling POST request It
 	 * also validates the user input
 	 */
-	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/createaccount", method = RequestMethod.POST)
 	public String saveRegistration(@Valid User user,
                                    BindingResult result, ModelMap model) {
+
 
 		if (result.hasErrors()) {
 			System.out.println("There are errors");
 			return "newuser";
 		}
+
 		userService.save(user);
-		
-		System.out.println("First Name : "+user.getFirstName());
+
+		System.out	.println("First Name : "+user.getFirstName());
 		System.out.println("Last Name : "+user.getLastName());
 		System.out.println("SSO ID : "+user.getSsoId());
 		System.out.println("Password : "+user.getPassword());
 		System.out.println("Email : "+user.getEmail());
 		System.out.println("Checking UsrProfiles....");
+
 		if(user.getUserProfiles()!=null){
 			for(UserProfile profile : user.getUserProfiles()){
 				System.out.println("Profile : "+ profile.getType());
 			}
 		}
-		
+
 		model.addAttribute("success", "User " + user.getFirstName() + " has been registered successfully");
+
 		return "registrationsuccess";
 	}
 
+//	@RequestMapping(value = "/registrationsuccess")
+//	public String registrationSuccess(){
+//		return "registrationsuccess";
+//	}
 	
 	
 	

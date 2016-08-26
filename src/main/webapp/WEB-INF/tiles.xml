@@ -47,10 +47,11 @@
         <put-attribute name="body" value="/WEB-INF/views/tiles/accessDenied.jsp"></put-attribute>
     </definition>
 
-    <definition name="newUser" extends="shop.base">
+    <definition name="newuser" extends="shop.base">
         <put-attribute name="title" value="Shop homepage"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/tiles/newuser.jsp"></put-attribute>
     </definition>
+
 
     <definition name="registrationsuccess" extends="shop.base">
         <put-attribute name="title" value="Shop homepage"></put-attribute>

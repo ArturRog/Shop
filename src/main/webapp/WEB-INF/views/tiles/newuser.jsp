@@ -7,8 +7,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>User Registration Form</title>
-	<link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"></link>
-	<link href="<c:url value='/resources/css/app.css' />" rel="stylesheet"></link>
+	<link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
+	<link href="<c:url value='/resources/css/app.css' />" rel="stylesheet"/>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
  	
  	<h1>New User Registration Form</h1>
  	
-	<form:form method="POST" modelAttribute="user" class="form-horizontal">
+	<form:form method="POST" modelAttribute="user" class="form-horizontal" action="${pageContext.request.contextPath}/createaccount">
 
 		<div class="row">
 			<div class="form-group col-md-12">
