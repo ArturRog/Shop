@@ -8,9 +8,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>FOOTER</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Admin page</title>
+    <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script href="resources/js/bootstrap.js"></script>
 </head>
 <body>
-SIMPLE FOOTER
+
+        <p>Artur Rog (c)</p>
+
+
+
 </body>
 </html>

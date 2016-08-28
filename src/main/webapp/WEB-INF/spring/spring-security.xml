@@ -9,7 +9,7 @@
         <intercept-url pattern="/home" access="permitAll"/>
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/newuser" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/newUser" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/db/**" access="hasRole('ADMIN') and hasRole('DBA')"/>
 
         <form-login login-page="/login"

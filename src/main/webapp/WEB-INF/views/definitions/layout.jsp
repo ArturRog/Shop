@@ -7,25 +7,51 @@
     <title><tiles:getAsString name="title"/></title>
 </head>
 <body>
-<table>
-    <tr>
-        <td colspan="2">
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
             <tiles:insertAttribute name="header" />
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             <tiles:insertAttribute name="menu" />
-        </td>
-        <td>
+        </div>
+        <div class="col-md-10">
             <tiles:insertAttribute name="body" />
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: right">
             <tiles:insertAttribute name="footer" />
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+</div>
+
+
+
+<%--<table>--%>
+    <%--<tr>--%>
+        <%--<td>--%>
+            <%--<tiles:insertAttribute name="header" />--%>
+        <%--</td>--%>
+    <%--</tr>--%>
+    <%--<tr>--%>
+        <%--<td>--%>
+            <%--<tiles:insertAttribute name="menu" />--%>
+        <%--</td>--%>
+        <%--<td>--%>
+            <%--<tiles:insertAttribute name="body" />--%>
+        <%--</td>--%>
+    <%--</tr>--%>
+    <%--<tr>--%>
+        <%--<td>--%>
+            <%--<tiles:insertAttribute name="footer" />--%>
+        <%--</td>--%>
+    <%--</tr>--%>
+<%--</table>--%>
 </body>
 </html>
