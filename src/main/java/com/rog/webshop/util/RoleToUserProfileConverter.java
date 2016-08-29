@@ -1,7 +1,7 @@
 package com.rog.webshop.util;
 
-import com.rog.webshop.model.UserProfile;
-import com.rog.webshop.service.UserProfileService;
+import com.rog.webshop.model.user.UserProfile;
+import com.rog.webshop.service.user.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

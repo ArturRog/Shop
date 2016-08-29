@@ -1,7 +1,7 @@
-package com.rog.webshop.dao;
+package com.rog.webshop.dao.user;
 
 
-import com.rog.webshop.model.User;
+import com.rog.webshop.model.user.User;
 
 public interface UserDao {
 

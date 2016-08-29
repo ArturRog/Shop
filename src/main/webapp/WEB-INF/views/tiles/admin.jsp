@@ -11,12 +11,12 @@
 	<script href="resources/js/bootstrap.js"></script>
 </head>
 <body>
-	<div class="jumbotron">
-		Dear <strong>${user}</strong>, Welcome to Admin Page.
-		<br/>
-		Would you like to <a href="<c:url value='/newUser' />">Add Some Users</a> to keep yourself busy?
-		<br/>
-		<button type="button" class="btn btn-info"><a href="<c:url value="/logout" />">Logout</a></button>
-	</div>
+<div class="jumbotron">
+	Dear <strong>${user}</strong>, Welcome to Admin Page.
+	<br/>
+	Would you like to <a href="<c:url value='/newUser' />">Add Some Users</a> to keep yourself busy?
+	<br/>
+	<button type="button" class="btn btn-info"><a href="<c:url value="/logout" />">Logout</a></button>
+</div>
 </body>
 </html>

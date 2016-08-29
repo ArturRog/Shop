@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: artur
@@ -14,13 +15,13 @@
 
 
         <div class="list-group">
-            <a href="#" class="list-group-item disabled">
+            <a href="/products" class="list-group-item ">
                 Menu
             </a>
-            <a href="#" class="list-group-item">Proteins</a>
-            <a href="#" class="list-group-item">Creatine</a>
-            <a href="#" class="list-group-item">Amino Acids</a>
-            <a href="#" class="list-group-item">Accessories</a>
+            <a href="<c:url value='/products?category=proteins'/>" class="list-group-item">Proteins</a>
+            <a href="<c:url value='/products/creatine'/>" class="list-group-item">Creatine</a>
+            <a href="<c:url value='/products/amino_acids'/>" class="list-group-item">Amino Acids</a>
+            <a href="<c:url value='/products/accessories'/>" class="list-group-item">Accessories</a>
         </div>
 
 

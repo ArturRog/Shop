@@ -1,8 +1,8 @@
-package com.rog.webshop.service;
+package com.rog.webshop.service.user;
 
 
-import com.rog.webshop.dao.UserDao;
-import com.rog.webshop.model.User;
+import com.rog.webshop.dao.user.UserDao;
+import com.rog.webshop.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

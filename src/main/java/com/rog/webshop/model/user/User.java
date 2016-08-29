@@ -1,4 +1,4 @@
-package com.rog.webshop.model;
+package com.rog.webshop.model.user;
 
 
 import org.hibernate.validator.constraints.NotEmpty;

@@ -58,6 +58,16 @@
         <put-attribute name="body" value="/WEB-INF/views/tiles/registrationsuccess.jsp"></put-attribute>
     </definition>
 
+    <definition name="products" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/products.jsp"></put-attribute>
+    </definition>
+
+    <definition name="product" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/product.jsp"></put-attribute>
+    </definition>
+
 
 
 

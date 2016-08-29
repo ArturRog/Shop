@@ -1,7 +1,7 @@
-package com.rog.webshop.dao;
+package com.rog.webshop.dao.user;
 
 
-import com.rog.webshop.model.UserProfile;
+import com.rog.webshop.model.user.UserProfile;
 
 import java.util.List;
 

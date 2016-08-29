@@ -1,7 +1,8 @@
-package com.rog.webshop.dao;
+package com.rog.webshop.dao.user;
 
 
-import com.rog.webshop.model.UserProfile;
+import com.rog.webshop.dao.AbstractDao;
+import com.rog.webshop.model.user.UserProfile;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("userProfileDao")
-public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile>implements UserProfileDao{
+public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile> implements UserProfileDao{
 
 	@SuppressWarnings("unchecked")
 	public List<UserProfile> findAll(){

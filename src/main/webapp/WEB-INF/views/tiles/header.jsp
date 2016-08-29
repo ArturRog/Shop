@@ -51,6 +51,9 @@
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <li><a href="<c:url value='/admin'/>">Admin Page</a></li>
+                    </sec:authorize>
                     <li><a class="login" href="<c:url value='/logout'/>">Log out</a></li>
                 </sec:authorize>
 

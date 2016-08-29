@@ -1,8 +1,8 @@
-package com.rog.webshop.service;
+package com.rog.webshop.service.user;
 
 
-import com.rog.webshop.model.User;
-import com.rog.webshop.model.UserProfile;
+import com.rog.webshop.model.user.User;
+import com.rog.webshop.model.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

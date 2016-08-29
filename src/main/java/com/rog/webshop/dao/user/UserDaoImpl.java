@@ -1,6 +1,7 @@
-package com.rog.webshop.dao;
+package com.rog.webshop.dao.user;
 
-import com.rog.webshop.model.User;
+import com.rog.webshop.dao.AbstractDao;
+import com.rog.webshop.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;

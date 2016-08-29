@@ -1,7 +1,7 @@
-package com.rog.webshop.service;
+package com.rog.webshop.service.user;
 
 
-import com.rog.webshop.model.User;
+import com.rog.webshop.model.user.User;
 
 public interface UserService {
 

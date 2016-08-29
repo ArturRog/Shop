@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 public abstract class AbstractDao<PK extends Serializable, T> {
 	
@@ -33,8 +34,18 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 		getSession().persist(entity);
 	}
 
-	public void delete(T entity) {
+	public void delete(PK entity) {
 		getSession().delete(entity);
+	}
+
+	public void update(T entity)
+	{
+		getSession().merge(entity);
+	}
+
+	public List<T> findAll()
+	{
+		return getSession().createQuery("Select t from " + persistentClass.getSimpleName() + " t").list();
 	}
 	
 	protected Criteria createEntityCriteria(){

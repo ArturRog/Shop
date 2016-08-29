@@ -1,10 +1,10 @@
 package com.rog.webshop.controller;
 
 
-import com.rog.webshop.model.User;
-import com.rog.webshop.model.UserProfile;
-import com.rog.webshop.service.UserProfileService;
-import com.rog.webshop.service.UserService;
+import com.rog.webshop.model.user.User;
+import com.rog.webshop.model.user.UserProfile;
+import com.rog.webshop.service.user.UserProfileService;
+import com.rog.webshop.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class HelloWorldController {
@@ -92,7 +94,6 @@ public class HelloWorldController {
 			return "newuser";
 		}
 
-		userService.save(user);
 
 		System.out	.println("First Name : "+user.getFirstName());
 		System.out.println("Last Name : "+user.getLastName());
@@ -101,11 +102,29 @@ public class HelloWorldController {
 		System.out.println("Email : "+user.getEmail());
 		System.out.println("Checking UsrProfiles....");
 
+		if (user.getUserProfiles().isEmpty()){
+//			user.setUserProfiles((Set<UserProfile>)userProfileService.findById(1));
+			Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+			userProfiles.add(userProfileService.findById(1));
+			user.setUserProfiles(userProfiles);
+			System.out.println(user.getUserProfiles());
+			System.out.println("^^^^^^^^^^^^^^^");
+		}
+
 		if(user.getUserProfiles()!=null){
 			for(UserProfile profile : user.getUserProfiles()){
 				System.out.println("Profile : "+ profile.getType());
 			}
 		}
+//		else{
+//
+//			user.setUserProfiles(new HashSet<UserProfile>(userProfileService.findById(1)));
+//			for(UserProfile profile : user.getUserProfiles()){
+//				System.out.println("Profile : "+ profile.getType());
+//			}
+//		}
+
+			userService.save(user);
 
 		model.addAttribute("success", "User " + user.getFirstName() + " has been registered successfully");
 

@@ -1,8 +1,8 @@
-package com.rog.webshop.service;
+package com.rog.webshop.service.user;
 
 
-import com.rog.webshop.dao.UserProfileDao;
-import com.rog.webshop.model.UserProfile;
+import com.rog.webshop.dao.user.UserProfileDao;
+import com.rog.webshop.model.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
