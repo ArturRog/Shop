@@ -10,6 +10,7 @@
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/products" access="permitAll"/>
         <intercept-url pattern="/product" access="permitAll"/>
+        <intercept-url pattern="/cart" access="isAuthenticated()"/>
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/newUser" access="permitAll"/>
         <intercept-url pattern="/db/**" access="hasRole('ADMIN') and hasRole('DBA')"/>
