@@ -3,6 +3,7 @@ package com.rog.webshop.model.product;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -11,13 +12,13 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @NotEmpty
     @Column(name = "PRODUCT_NAME")
     private String productName;
 
-    @NotEmpty
+    @NotNull
     @Column(name = "PRODUCT_PRICE")
     private BigDecimal productPrice;
 
@@ -25,7 +26,7 @@ public class Product {
     @Column(name = "PRODUCT_DESCRIPTION")
     private String productDescription;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Category category;
 
     public Product() {

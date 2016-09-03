@@ -32,9 +32,11 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
 
 
     @SuppressWarnings("unchecked")
-    public List<Product> findByCategory(String category) {
+    public List<Product> findByCategory(Integer category) {
         Criteria criteria = createEntityCriteria();
+
         criteria.add(Restrictions.eq("category", category));
+
         return (List<Product>) criteria.list();
     }
 

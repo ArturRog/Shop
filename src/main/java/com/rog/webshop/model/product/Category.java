@@ -11,20 +11,15 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @NotEmpty
-    @Column(name = "CATEGORY_NAME")
+    @Column(name = "CATEGORY_NAME",length=15, unique=true, nullable=false)
     private String categoryName;
+//    = CategoryName.PROTEINS.getCategoryName();
 
 
-    public Category(){}
-
-    public Category(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public int getId() {
+    public int getId    () {
         return id;
     }
 

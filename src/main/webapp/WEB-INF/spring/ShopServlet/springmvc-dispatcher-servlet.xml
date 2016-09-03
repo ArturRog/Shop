@@ -42,6 +42,7 @@
 		<property name="converters">
 			<list>
 				<bean id="roleToUserProfile" class="com.rog.webshop.util.RoleToUserProfileConverter" />
+				<bean id="categoryToProduct" class="com.rog.webshop.util.CategoryConverter" />
 			</list>
 		</property>
 	</bean>

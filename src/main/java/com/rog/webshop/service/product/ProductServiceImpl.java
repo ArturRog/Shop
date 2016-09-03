@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
         return productDao.listOfProducts();
     }
 
-    public List<Product> findByCategory(String category) {
+    public List<Product> findByCategory(Integer category) {
         return productDao.findByCategory(category);
     }
 

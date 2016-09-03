@@ -27,4 +27,8 @@ public class CategoryServiceImpl implements CategoryService {
     public Category getByName(String name) {
         return categoryDao.getByName(name);
     }
+
+    public Category findById(int id) {
+        return categoryDao.findById(id);
+    }
 }

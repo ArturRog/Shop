@@ -69,6 +69,12 @@
     </definition>
 
 
+    <definition name="addProduct" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/addProduct.jsp"></put-attribute>
+    </definition>
+
+
 
 
 
