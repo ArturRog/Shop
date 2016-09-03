@@ -17,7 +17,7 @@
 
     <div class="col-sm-6 col-md-3">
 
-        <div class="thumbnail" style="height: 400px">
+        <div class="thumbnail" style="height: 500px">
             <a href="<c:url value='/products/product?id=${product.id}' />">
                 <img src="/resources/img/product.jpg" alt="image" style="width:100%"/>
             </a>
@@ -26,16 +26,9 @@
                     <h3><b>${product.productName}</b></h3>
                 </a>
                 <p>${product.productDescription}</p>
-                <p>${product.productPrice} </p>
+                <hr>
+                <b>$${product.productPrice}</b><div class="pull-right"><a href="#" class="btn btn-danger btn-sm" role="button">Add to cart</a></div>
 
-                    <%--<p>Units available: dddddddddd</p>--%>
-                    <%--<p>--%>
-                    <%--<a--%>
-                    <%--href="" /> "--%>
-                    <%--class="btn btn-primary"> <span--%>
-                    <%--class="glyphicon-info-sign glyphicon" /></span> Details--%>
-                    <%--</a>--%>
-                    <%--</p>--%>
 
             </div>
         </div>
