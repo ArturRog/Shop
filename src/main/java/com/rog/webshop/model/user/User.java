@@ -1,6 +1,8 @@
 package com.rog.webshop.model.user;
 
 
+import com.rog.webshop.validator.UserSsoId;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -15,6 +17,7 @@ public class User {
 	private int id;
 
 	@NotEmpty
+	@UserSsoId
 	@Column(name="SSO_ID", unique=true, nullable=false)
 	private String ssoId;
 	
@@ -31,6 +34,7 @@ public class User {
 	private String lastName;
 
 	@NotEmpty
+	@Email
 	@Column(name="EMAIL", nullable=false)
 	private String email;
 
