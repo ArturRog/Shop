@@ -1,9 +1,12 @@
 package com.rog.webshop.model.product;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
@@ -14,20 +17,25 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty
+    @Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
     @Column(name = "PRODUCT_NAME")
     private String productName;
 
-    @NotNull
+    @Min(value = 0,    message = "{Min.Product.productPrice.validation}")
+    @Digits(integer = 8,fraction = 2,message = "{Digits.Product.productPrice.validation}")
+    @NotNull(message = "{NotNull.Product.productPrice.validation}")
     @Column(name = "PRODUCT_PRICE")
     private BigDecimal productPrice;
 
-    @NotEmpty
+    @NotBlank(message = "{NotBlank.Product.productDescription.validation}")
     @Column(name = "PRODUCT_DESCRIPTION")
     private String productDescription;
 
+    @NotNull(message = "NotNull.Product.category.validation")
     @ManyToOne(cascade = CascadeType.MERGE)
     private Category category;
+
+//    private MultipartFile productImage;
 
     public Product() {
     }

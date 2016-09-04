@@ -10,6 +10,6 @@ public interface ProductService {
     void addProduct(Product product);
     void updateProduct(Product product);
     List<Product> listOfProducts();
-    List<Product> findByCategory(Integer category);
+    List<Product> findByCategory(String category);
     void removeProduct(int id);
 }

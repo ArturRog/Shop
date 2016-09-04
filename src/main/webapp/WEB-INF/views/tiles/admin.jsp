@@ -15,6 +15,7 @@
 	Dear <strong>${user}</strong>, Welcome to Admin Page.
 	<br/>
 	Would you like to <a href="<c:url value='/newUser' />">Add Some Users</a> to keep yourself busy?
+	Or maybe <a href="<c:url value='/products/add' />">Add new product</a>
 	<br/>
 	<button type="button" class="btn btn-info"><a href="<c:url value="/logout" />">Logout</a></button>
 </div>

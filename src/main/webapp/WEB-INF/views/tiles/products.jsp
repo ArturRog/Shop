@@ -6,9 +6,11 @@
     <title>Products</title>
     <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>--%>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script href="resources/js/bootstrap.js"></script>
+
+
 </head>
 <body>
 
@@ -17,19 +19,36 @@
 
     <div class="col-sm-6 col-md-3">
 
+            <%--<div class="flex-container">--%>
+            <%--<div class="col-xs-12">--%>
+            <%--<img height="200px" class="img im-responsive" src="/resources/img/product.jpg">--%>
+            <%--<div class="some-text">--%>
+            <%--<a href="<c:url value='/products/product?id=${product.id}' />">--%>
+            <%--<h3><b>${product.productName}</b></h3>--%>
+            <%--</a>--%>
+            <%--<p>${product.productDescription}</p>--%>
+            <%--<hr>--%>
+            <%--<b>$${product.productPrice}</b><div class="pull-right"><a href="#" class="btn btn-danger btn-sm" role="button">Add to cart</a></div>--%>
+
+            <%--</div>--%>
+            <%--</div>--%>
+            <%--</div>--%>
+
+
         <div class="thumbnail" style="height: 500px">
             <a href="<c:url value='/products/product?id=${product.id}' />">
-                <img src="/resources/img/product.jpg" alt="image" style="width:100%"/>
+                <img src="/resources/img/product.jpg" alt="image" style="width:100%; height: 230px"/>
             </a>
-            <div class="caption">
+            <div class="caption" style="overflow: hidden; height: 170px">
                 <a href="<c:url value='/products/product?id=${product.id}' />">
                     <h3><b>${product.productName}</b></h3>
                 </a>
                 <p>${product.productDescription}</p>
+            </div>
+            <div class="price and button" style="height: 80px">
                 <hr>
-                <b>$${product.productPrice}</b><div class="pull-right"><a href="#" class="btn btn-danger btn-sm" role="button">Add to cart</a></div>
-
-
+                <b>$${product.productPrice}</b>
+                <div class="pull-right"><a href="#" class="btn btn-danger btn-sm" role="button">Add to cart</a></div>
             </div>
         </div>
     </div>

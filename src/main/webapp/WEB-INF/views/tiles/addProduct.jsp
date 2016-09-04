@@ -6,58 +6,76 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
+    <%--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">--%>
     <title>Products</title>
 </head>
 
 <%--<section class="container">--%>
-    <form:form method="post" modelAttribute="newProduct" class="form-horizontal"
-               action="${pageContext.request.contextPath}/products/add">
-        <fieldset>
-            <legend>Add new product</legend>
+<form:form method="post" modelAttribute="newProduct" class="form-horizontal"
+           action="${pageContext.request.contextPath}/products/add">
+    <%--enctype="multipart/form-data"--%>
+    <form:errors path="*" cssClass="alert alert-danger" element="div"/>
+
+    <fieldset>
+        <legend>Add new product</legend>
 
 
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="productName"></label>
-                <div class="col-lg-10">
-                    <form:input id="productName" path="productName" type="text" class="form:input-large"/>
+        <div class="form-group col-md-12">
+            <label class="control-label col-md-3" for="productName">
+                <spring:message code="addProduct.form.productName.label"/>
+            </label>
+            <div class="col-md-7">
+                <form:input id="productName" path="productName" type="text" class="form:input-large"/>
+                <form:errors path="productName" cssClass="text-danger"/>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label class="control-label col-md-3" for="productPrice">
+                <spring:message code="addProduct.form.productPrice.label"/>
+            </label>
+            <div class="col-md-7">
+                <div class="form:input-prepend">
+                    <form:input id="productPrice" path="productPrice" type="text" class="form:input-large"/>
+                    <form:errors path="productPrice" cssClass="text-danger"/>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="productPrice"></label>
-                <div class="col-lg-10">
-                    <div class="form:input-prepend">
-                        <form:input id="productPrice" path="productPrice" type="text" class="form:input-large"/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label" for="category">Categories</label>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="col-md-3 control-label" for="category">
+                <spring:message code="addProduct.form.productCategory.label"/>
+            </label>
+            <div class="col-md-7">
                 <form:select path="category." items="${categories}" multiple="false" itemValue="id"
                              itemLabel="categoryName"
                              class="form-control input-sm"/>
+                <form:errors path="category" cssClass="text-danger"/>
+            </div>
                 <%--<form:select path="category" id="category">--%>
-                    <%--<form:option value="1" label="--CATEGORY--"/>--%>
-                    <%--<form:options items="${categories}"/>--%>
+                <%--<form:option value="1" label="--CATEGORY--"/>--%>
+                <%--<form:options items="${categories}"/>--%>
                 <%--</form:select>--%>
-            </div>
+        </div>
 
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="productDescription"></label>
-                <div class="col-lg-10">
-                    <form:textarea id="productDescription" path="productDescription" rows="2"/>
-                </div>
+        <div class="form-group col-md-12">
+            <label class="control-label col-md-3" for="productDescription">
+                <spring:message code="addProduct.form.productDescription.label"/>
+            </label>
+            <div class="col-md-7">
+                <form:textarea id="productDescription" path="productDescription" rows="2"/>
+                <form:errors path="productDescription" cssClass="text-danger"/>
             </div>
+        </div>
 
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" id="btnAdd" class="btn btn-primary" value="Add"/>
-                </div>
+        <div class="form-group col-md-12">
+            <div class="col-lg-offset-2 col-lg-10">
+                <input type="submit" id="btnAdd" class="btn btn-primary" value="Add"/>
             </div>
+        </div>
 
-        </fieldset>
-    </form:form>
+    </fieldset>
+</form:form>
 <%--</section>--%>
 </body>
 </html>

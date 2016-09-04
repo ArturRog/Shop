@@ -4,6 +4,7 @@ package com.rog.webshop.model.product;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "CATEGORY")
@@ -13,7 +14,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty
+    @Size(min = 4, max = 40, message = "{Size.Category.categoryName.validation}")
+    @NotEmpty(message = "NotEmpty.Category.categoryName.validation")
     @Column(name = "CATEGORY_NAME",length=15, unique=true, nullable=false)
     private String categoryName;
 //    = CategoryName.PROTEINS.getCategoryName();

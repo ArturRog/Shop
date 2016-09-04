@@ -1,5 +1,6 @@
 package com.rog.webshop.service.product;
 
+import com.rog.webshop.dao.product.CategoryDao;
 import com.rog.webshop.dao.product.ProductDao;
 import com.rog.webshop.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductDao productDao;
+
+    @Autowired
+    private CategoryDao categoryDao;
 
     public Product findById(int id) {
         return productDao.findById(id);
@@ -31,8 +35,8 @@ public class ProductServiceImpl implements ProductService {
         return productDao.listOfProducts();
     }
 
-    public List<Product> findByCategory(Integer category) {
-        return productDao.findByCategory(category);
+    public List<Product> findByCategory(String category) {
+        return productDao.findByCategory(categoryDao.getByName(category).getId());
     }
 
     public void removeProduct(int id) {

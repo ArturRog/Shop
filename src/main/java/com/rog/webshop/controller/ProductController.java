@@ -1,6 +1,7 @@
 package com.rog.webshop.controller;
 
 
+import com.rog.webshop.exception.NoProductsFoundUnderCategoryException;
 import com.rog.webshop.model.product.Category;
 import com.rog.webshop.model.product.Product;
 import com.rog.webshop.service.product.CategoryService;
@@ -8,12 +9,12 @@ import com.rog.webshop.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -33,7 +34,10 @@ public class ProductController {
 
         System.out.println(nameOrNull);
         if (nameOrNull != null) {
-            model.addAttribute("products", productService.findByCategory(Integer.parseInt(nameOrNull)));
+            if (productService.findByCategory(nameOrNull).isEmpty()) {
+                throw new NoProductsFoundUnderCategoryException();
+            }
+            model.addAttribute("products", productService.findByCategory(nameOrNull));
         } else {
             model.addAttribute("products", productService.listOfProducts());
         }
@@ -58,7 +62,7 @@ public class ProductController {
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddNewProductForm(@ModelAttribute("newProduct") Product newProduct, BindingResult result) {
+    public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct, BindingResult result) {
 
         System.out.println("Product name: " + newProduct.getProductName());
         System.out.println("Product price: " + newProduct.getProductPrice());
@@ -67,8 +71,14 @@ public class ProductController {
 
         if (result.hasErrors()) {
             System.out.println("There are errors" + result.getAllErrors());
-            return "redirect:/products";
+            return "addProduct";
         }
+        String[] supressedFields = result.getSuppressedFields();
+        if (supressedFields.length > 0) {
+            throw new RuntimeException("Trial of binding supressed fields: "
+                    + StringUtils.arrayToCommaDelimitedString(supressedFields));
+        }
+
 
         productService.addProduct(newProduct);
 
@@ -90,5 +100,10 @@ public class ProductController {
 
     }
 
+
+    @InitBinder
+    public void initialiseBinder(WebDataBinder binder) {
+        binder.setAllowedFields("id", "categoryName", "productName", "productPrice", "productDescription", "category");
+    }
 
 }

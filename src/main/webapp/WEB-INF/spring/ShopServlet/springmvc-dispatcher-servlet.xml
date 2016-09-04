@@ -35,7 +35,19 @@
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<mvc:annotation-driven conversion-service="conversionService"/>
+	<mvc:annotation-driven conversion-service="conversionService" enable-matrix-variables="true" validator="validator"/>
+
+	<!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+		<!--<property name="maxUploadSize" value="10240000"/>-->
+	<!--</bean>-->
+
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource"/>
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages"/>
+	</bean>
 
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 
