@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,18 +19,22 @@ public class User {
 
 	@NotEmpty
 	@UserSsoId
+	@Size(min = 3, max = 15, message = "{Size.User.ssoId.validation}")
 	@Column(name="SSO_ID", unique=true, nullable=false)
 	private String ssoId;
 	
 	@NotEmpty
+	@Size(min = 6, max = 15, message = "{Size.User.password.validation}")
 	@Column(name="PASSWORD", nullable=false)
 	private String password;
 		
 	@NotEmpty
+	@Size(min = 3, max = 15, message = "{Size.User.firstName.validation}")
 	@Column(name="FIRST_NAME", nullable=false)
 	private String firstName;
 
 	@NotEmpty
+	@Size(min = 3, max = 15, message = "{Size.User.lastName.validation}")
 	@Column(name="LAST_NAME", nullable=false)
 	private String lastName;
 
