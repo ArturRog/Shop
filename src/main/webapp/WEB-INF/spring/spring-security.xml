@@ -12,6 +12,7 @@
         <intercept-url pattern="/product" access="permitAll"/>
         <intercept-url pattern="/products/add" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/cart" access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/**" access="isAuthenticated()"/>
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/newUser" access="permitAll"/>
         <intercept-url pattern="/db/**" access="hasRole('ADMIN') and hasRole('DBA')"/>
@@ -21,7 +22,7 @@
                     password-parameter="password"
                     authentication-success-handler-ref="customSuccessHandler"/>
         <access-denied-handler error-page="/Access_Denied"/>
-        <csrf/>
+        <csrf disabled="true"/>
     </http>
 
     <beans:bean id="customSuccessHandler" class="com.rog.webshop.configuration.CustomSuccessHandler"/>

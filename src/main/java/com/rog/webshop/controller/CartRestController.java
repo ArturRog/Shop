@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/rest/cart")
+@RequestMapping(value = "rest/cart")
 public class CartRestController {
 
     @Autowired
@@ -33,24 +33,32 @@ public class CartRestController {
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody Cart create(@RequestBody Cart cart){
+        System.out.println("Kontroler create");
         return cartService.create(cart);}
 
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.GET)
     public @ResponseBody Cart read(@PathVariable(value = "cartId") String cartId)
     {
+
+        System.out.println("Kontroler read");
+
         return cartService.read(cartId);
     }
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@PathVariable(value = "cartId") String cartId, @RequestBody Cart cart){
+        System.out.println("Kontroler update");
+
         cartService.update(cart,cartId);
     }
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "cartId") String cartId){
+        System.out.println("Kontroler delete");
+
         cartService.delete(cartId);
     }
 
@@ -59,24 +67,35 @@ public class CartRestController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addItem(@PathVariable Integer productId, HttpServletRequest request)
     {
+        System.out.println("Funkcja addItem w controllerze");
         String sessionId = request.getSession().getId();
         Cart cart = cartService.read(sessionId);
+        System.out.println("Funkcja addItem 2 w controllerze");
         if(cart== null)
         {
+            System.out.println("Funkcja addItem  3 w controllerze");
             cart = cartService.create(new Cart(sessionId));
         }
+        System.out.println("Funkcja addItem 4 w controllerze");
         Product product = productService.findById(productId);
+        System.out.println("Funkcja addItem 5 w controllerze");
         if(product == null)
         {
+            System.out.println("Funkcja addItem 6 w controllerze");
             throw new IllegalArgumentException();
         }
+        System.out.println("Funkcja addItem  7 w controllerze");
         cart.addItemToCart(new Item(product));
+        System.out.println("Funkcja addItem  8 w controllerze");
         cartService.update(cart, sessionId);
+        System.out.println("Funkcja addItem  9 w controllerze");
     }
     @RequestMapping(value = "/remove/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void removeItem(@PathVariable Integer productId, HttpServletRequest request)
     {
+        System.out.println("Kontroler remove item");
+
         String sessionId = request.getSession().getId();
         Cart cart = cartService.read(sessionId);
         if(cart== null)

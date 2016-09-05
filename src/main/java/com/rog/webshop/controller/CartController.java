@@ -14,14 +14,19 @@ import javax.servlet.http.HttpServletRequest;
 public class CartController {
 
 
-    @RequestMapping(value = "/{cartId", method = RequestMethod.GET)
+    @RequestMapping(value = "/{cartId}", method = RequestMethod.GET)
     public String getCart(@PathVariable(value = "cartId") String cartId , ModelMap model){
+        System.out.println("Kontroler getcart w /cart " + cartId);
+
         model.addAttribute("cartId", cartId);
         return "cart";
     }
 
     @RequestMapping
     public String get(HttpServletRequest request){
+
+        System.out.println("Kontroler get w /cart");
+
         return "redirect:/cart/" + request.getSession().getId();
     }
 }

@@ -26,10 +26,11 @@
             </p>
 
 
-            <h4>${product.productPrice} PLN</h4>
+            <h4>$${product.productPrice} USD</h4>
             <p ng-controller="cartCtrl">
                 <a href="#" class="btn btn-warning btn-large" ng-click="addToCart('${product.id}')">
-                    <span class="glyphicon-shopping-cart glyphicon"></span> Order now </a>
+                    <span class="glyphicon-shopping-cart glyphicon"></span> Order now
+                </a>
                 <a href="<spring:url value="/cart" />" class="btn btn-default">
                     <span class="glyphicon-hand-right glyphicon"></span> Cart
                 </a>
