@@ -6,28 +6,28 @@ import java.util.Map;
 
 public class Cart {
 
-    private Integer cartId;
-    private Map<Integer, Item> products = new HashMap<Integer, Item>();
+    private String cartId;
+    private Map<String, Item> products = new HashMap<String, Item>();
     private BigDecimal totalValue = new BigDecimal(0);
 
-    public Cart(Integer cartId) {
+    public Cart(String cartId) {
         this.cartId = cartId;
     }
 
 
-    public Integer getCartId() {
+    public String getCartId() {
         return cartId;
     }
 
-    public void setCartId(Integer cartId) {
+    public void setCartId(String cartId) {
         this.cartId = cartId;
     }
 
-    public Map<Integer, Item> getProducts() {
+    public Map<String, Item> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<Integer, Item> products) {
+    public void setProducts(Map<String, Item> products) {
         this.products = products;
     }
 
@@ -41,7 +41,7 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart{" +
+        return "CartDao{" +
                 "cartId='" + cartId + '\'' +
                 ", products=" + products +
                 ", totalValue=" + totalValue +
@@ -68,7 +68,7 @@ public class Cart {
     }
 
     public void addItemToCart(Item item) {
-        Integer itemId = item.getProduct().getId();
+        String itemId = String.valueOf(item.getProduct().getId());
 
         if (products.containsKey(itemId)) {
             Item alreadyInCart = products.get(itemId);
