@@ -25,7 +25,7 @@ public class Order {
 //@ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-//    private Cart cart;
+//    private CartDao cart;
 
     //    @OneToMany
     private Set<OrderDetails> orderDetails = new HashSet<OrderDetails>();

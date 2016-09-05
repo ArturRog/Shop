@@ -6,15 +6,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
-    <script href="resources/js/bootstrap.js"></script>
-    <%--<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>--%>
+    <%--<link href="<c:url value='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js' />" rel="script"/>--%>
+    <%--<link href="<c:url value='/resources/js/controllers.js' />" rel="script"/>--%>
+    <script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script src="/resources/js/controllers.js"></script>
     <title>Products</title>
 </head>
-
 <section class="container" ng-app="cartApp">
     <div class="row">
         <div class="col-md-5">
-            <img src="<c:url value="/resources/img/product.jpg"></c:url>" alt="image"  style = "width:100%"/>
+            <img src="<c:url value="/resources/img/product.jpg"/>" alt="image"  style = "width:100%"/>
         </div>
 
         <div class="col-md-5">
@@ -33,7 +34,7 @@
                     <span class="glyphicon-hand-right glyphicon"></span> Cart
                 </a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="<spring:url value="edit/${product.productId}" />" class="btn btn-default">
+                    <a href="<spring:url value="edit/${product.id}" />" class="btn btn-default">
                         <span class="glyphicon-hand-right glyphicon"></span> Edit
                     </a>
                 </sec:authorize>

@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Welcome page</title>
     <script src="/resources/js/bootstrap.js"></script>
-    <link href="../../../resources/css/bootstrap.css"/>
+    <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
+
 </head>
 <body>
 <div class="container-fluid">
