@@ -18,34 +18,38 @@ public class CartDaoImpl implements CartDao {
     }
 
     public Cart create(Cart cart) {
-        if(listOfCarts.containsKey(cart.getCartId()))
-        {
+        System.out.println("I'm in create method in Cart DAO. cart: " + cart.getCartId());
+
+        if (listOfCarts.containsKey(cart.getCartId())) {
             throw new IllegalArgumentException(String.format("Can not create cart"
-                    + "Cart with specified id (%) already exists.",cart.getCartId()));
+                    + "Cart with specified id (%) already exists.", cart.getCartId()));
         }
         listOfCarts.put(cart.getCartId(), cart);
         return cart;
     }
 
     public Cart read(String cartId) {
+        System.out.println("I'm in read method in Cart DAO. cartId: " + cartId);
         return listOfCarts.get(cartId);
     }
 
 
     public void update(Cart cart, String cartId) {
-        if(!listOfCarts.containsKey(cartId))
-        {
+        System.out.println("I'm in update method in Cart DAO. cart: " + cart.getCartId() + " cartID" + cartId);
+
+        if (!listOfCarts.containsKey(cartId)) {
             throw new IllegalArgumentException(String.format("Can not update cart. "
-                    + "Cart with specified id (%) does not exists.",cartId));
+                    + "Cart with specified id (%) does not exists.", cartId));
         }
         listOfCarts.put(cartId, cart);
     }
 
     public void delete(String cartId) {
-        if(!listOfCarts.containsKey(cartId))
-        {
+        System.out.println("I'm in create method in Cart DAO. cartId: " + cartId);
+
+        if (!listOfCarts.containsKey(cartId)) {
             throw new IllegalArgumentException(String.format("Can not update cart. "
-                    + "Cart with specified id (%) does not exists.",cartId));
+                    + "Cart with specified id (%) does not exists.", cartId));
         }
         listOfCarts.remove(cartId);
     }

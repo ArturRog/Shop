@@ -4,11 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Products</title>
-    <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
-    <link href="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js' />" rel="script"/>
     <link href="<c:url value='/resources/js/controllers.js' />" rel="script"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script href="resources/js/bootstrap.js"></script>
 </head>

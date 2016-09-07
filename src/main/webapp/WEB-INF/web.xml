@@ -20,6 +20,7 @@
     </context-param>
 
     <!-- Spring MVC -->
+
     <servlet>
         <servlet-name>springmvc-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

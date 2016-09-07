@@ -6,22 +6,24 @@
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern="/home" access="permitAll"/>
-        <intercept-url pattern="/" access="permitAll"/>
-        <intercept-url pattern="/products" access="permitAll"/>
-        <intercept-url pattern="/product" access="permitAll"/>
-        <intercept-url pattern="/products/add" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/cart" access="isAuthenticated()"/>
-        <intercept-url pattern="/rest/**" access="isAuthenticated()"/>
-        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/newUser" access="permitAll"/>
-        <intercept-url pattern="/db/**" access="hasRole('ADMIN') and hasRole('DBA')"/>
+        <intercept-url pattern="/*" access="permitAll"/>
 
-        <form-login login-page="/login"
-                    username-parameter="ssoId"
-                    password-parameter="password"
-                    authentication-success-handler-ref="customSuccessHandler"/>
-        <access-denied-handler error-page="/Access_Denied"/>
+        <!--<intercept-url pattern="/home" access="permitAll"/>-->
+        <!--<intercept-url pattern="/" access="permitAll"/>-->
+        <!--<intercept-url pattern="/products" access="permitAll"/>-->
+        <!--<intercept-url pattern="/product" access="permitAll"/>-->
+        <!--<intercept-url pattern="/products/add" access="hasRole('ADMIN')"/>-->
+        <!--<intercept-url pattern="/cart" access="isAuthenticated()"/>-->
+        <!--<intercept-url pattern="/rest/**" access="isAuthenticated()"/>-->
+        <!--<intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>-->
+        <!--<intercept-url pattern="/newUser" access="permitAll"/>-->
+        <!--<intercept-url pattern="/db/**" access="hasRole('ADMIN') and hasRole('DBA')"/>-->
+
+        <!--<form-login login-page="/login"-->
+                    <!--username-parameter="ssoId"-->
+                    <!--password-parameter="password"-->
+                    <!--authentication-success-handler-ref="customSuccessHandler"/>-->
+        <!--<access-denied-handler error-page="/Access_Denied"/>-->
         <csrf disabled="true"/>
     </http>
 

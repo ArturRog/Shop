@@ -9,13 +9,6 @@
 
 	<context:component-scan base-package="com.rog.webshop.controller" />
 
-
-	<!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-		<!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />-->
-		<!--<property name="prefix" value="/WEB-INF/views/" />-->
-		<!--<property name="suffix" value=".jsp" />-->
-	<!--</bean>-->
-
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
@@ -34,12 +27,8 @@
 	</bean>
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
+	<!--<mvc:default-servlet-handler default-servlet-name="myCustomDefaultServlet"/>-->
 	<mvc:annotation-driven conversion-service="conversionService" enable-matrix-variables="true" validator="validator"/>
-
-	<!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-		<!--<property name="maxUploadSize" value="10240000"/>-->
-	<!--</bean>-->
 
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource"/>

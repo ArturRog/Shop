@@ -14,18 +14,24 @@ public class CartServiceImpl implements CartService {
     private CartDao cartDao;
 
     public Cart create(Cart cart) {
+        System.out.println("I'm in create method in Cart service. cart: " + cart.getCartId());
+
         return cartDao.create(cart);
     }
 
     public Cart read(String cartId) {
+
+        System.out.println("I'm in read method in Cart service. cartId: " + cartId);
         return cartDao.read(cartId);
     }
 
     public void update(Cart cart, String cartId) {
+        System.out.println("I'm in update in Cart service. cartId: " + cartId + " cart " + cart.getCartId());
         cartDao.update(cart, cartId);
     }
 
     public void delete(String cartId) {
+        System.out.println("I'm in read delete in Cart service. cartId: " + cartId);
         cartDao.delete(cartId);
     }
 }

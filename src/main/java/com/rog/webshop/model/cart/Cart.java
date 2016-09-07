@@ -68,6 +68,8 @@ public class Cart {
     }
 
     public void addItemToCart(Item item) {
+        System.out.println("I'm in addItemToCart method in Cart model controller. Item to be added: " + item.getProduct().getId());
+
         String itemId = String.valueOf(item.getProduct().getId());
 
         if (products.containsKey(itemId)) {
@@ -92,8 +94,5 @@ public class Cart {
         updateTotalValue();
 
     }
-
-
-
 
 }
