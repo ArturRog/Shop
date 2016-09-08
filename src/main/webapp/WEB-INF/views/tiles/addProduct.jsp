@@ -3,15 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
-    <%--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">--%>
-    <title>Products</title>
-</head>
-
-<%--<section class="container">--%>
 <form:form method="post" modelAttribute="newProduct" class="form-horizontal"
            action="${pageContext.request.contextPath}/products/add">
     <%--enctype="multipart/form-data"--%>
@@ -76,6 +67,3 @@
 
     </fieldset>
 </form:form>
-<%--</section>--%>
-</body>
-</html>

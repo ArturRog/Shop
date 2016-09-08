@@ -4,15 +4,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<html>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>User Registration Form</title>
-    <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
-</head>
-
-<body>
 
 <div class="form-container">
 
@@ -126,5 +117,3 @@
         </sec:authorize>
     </form:form>
 </div>
-</body>
-</html>

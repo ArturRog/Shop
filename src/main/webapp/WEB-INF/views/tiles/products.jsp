@@ -1,19 +1,13 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Products</title>
-    <script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-    <script src="<c:url value="/resources/js/controllers.js"/>"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script href="resources/js/bootstrap.js"></script>
-</head>
-<body>
+
+
+<script src="<c:url value="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"/>"></script>
+<script src="<c:url value="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"/>"></script>
+<script src="<c:url value="/resources/js/controllers.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 
 <div ng-app="cartApp">
     <c:forEach items="${products}" var="product">
@@ -33,12 +27,11 @@
                     <hr>
                     <b>$${product.productPrice}</b>
                     <div class="pull-right" ng-controller="cartCtrl">
-                        <a href="#" class="btn btn-danger btn-sm" role="button" ng-click="addToCart('${product.id}')">Add to cart</a>
+                        <a href="#" class="btn btn-danger btn-sm" role="button" ng-click="addToCart('${product.id}')">Add
+                            to cart</a>
                     </div>
                 </div>
             </div>
         </div>
     </c:forEach>
 </div>
-</body>
-</html>

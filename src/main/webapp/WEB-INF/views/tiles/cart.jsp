@@ -1,18 +1,11 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet"
-          href="<c:url value="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>">
+<script src="<c:url value="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"/>"></script>
+<script src="<c:url value="/resources/js/controllers.js"/>"></script>
 
-    <script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-    <script src="<c:url value="/resources/js/controllers.js"/>"></script>
 
-    <title>Cart</title>
-</head>
 <section class="container" ng-app="cartApp">
     <div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')" class="col-xs-8">
 
@@ -37,8 +30,8 @@
                 <td>{{item.product.productPrice}}</td>
                 <td>{{item.quantity}}</td>
                 <td>{{item.totalValue}}</td>
-                <td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)"> <span
-                        class="glyphicon glyphicon-remove" /></span> Delete
+                <td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">
+                    <span class="glyphicon glyphicon-remove"/></span> Delete
                 </a></td>
             </tr>
             <tr>
@@ -59,4 +52,3 @@
 
 
 
-</html>

@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>AccessDenied page</title>
-    <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
-</head>
-<body>
 
 
 <div class="alert alert-danger" role="alert">
@@ -19,12 +12,5 @@
         <sec:authorize access="hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')">
             <a href="<c:url value="/logout" />" class="btn btn-danger" role="button">Logout</a>
         </sec:authorize>
-
     </a>
-
-
 </div>
-
-
-</body>
-</html>

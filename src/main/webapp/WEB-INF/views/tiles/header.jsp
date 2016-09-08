@@ -4,18 +4,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Admin page</title>
-    <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet"/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script href="resources/js/bootstrap.js"></script>
-</head>
-
-<body>
+<script src="<c:url value="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 
 <nav class="navbar navbar-inverse ">
     <div class="container-fluid">
@@ -64,6 +54,3 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
-</body>
-</html>

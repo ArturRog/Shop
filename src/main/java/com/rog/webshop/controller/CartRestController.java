@@ -25,7 +25,6 @@ public class CartRestController {
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody Cart read(@PathVariable(value = "cartId") String cartId) {
-        System.out.println("WROTNIAK PIOTR");
         System.out.println("I'm in read method in /rest/cart controller. CartId: " + cartId);
         for (Item item : cartService.read(cartId).getProducts().values()) {
             System.out.println(item.getProduct().getProductName());
@@ -49,11 +48,6 @@ public class CartRestController {
         return cartService.create(cart);
     }
 
-//    @RequestMapping(value = "/{cartId}", method = RequestMethod.GET)
-//    public @ResponseBody Cart read(@PathVariable(value = "cartId") String cartId) {
-//        return cartService.read(cartId);
-//    }
-    //////////////////////////////////////////
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
