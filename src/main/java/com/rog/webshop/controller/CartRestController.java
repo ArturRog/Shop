@@ -23,15 +23,15 @@ public class CartRestController {
     private ProductService productService;
 
 
-    @RequestMapping(value = "/{cartId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{cartId}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody Cart read(@PathVariable(value = "cartId") String cartId) {
+        System.out.println("WROTNIAK PIOTR");
         System.out.println("I'm in read method in /rest/cart controller. CartId: " + cartId);
         for (Item item : cartService.read(cartId).getProducts().values()) {
             System.out.println(item.getProduct().getProductName());
         }
         return cartService.read(cartId);
     }
-
 
     /**
      * POST - Creates new Cart object

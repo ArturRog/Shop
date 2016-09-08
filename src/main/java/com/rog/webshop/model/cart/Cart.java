@@ -1,16 +1,25 @@
 package com.rog.webshop.model.cart;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cart {
+public class Cart implements Serializable {
+
+    private static final long serialVersionUID = 6963354675862881135L;
 
     private String cartId;
-    private Map<String, Item> products = new HashMap<String, Item>();
-    private BigDecimal totalValue = new BigDecimal(0);
+    private Map<Integer, Item> products;
+    private BigDecimal totalValue;
+
+    public Cart() {
+        this.products = new HashMap<Integer, Item>();
+        this.totalValue = new BigDecimal(0);
+    }
 
     public Cart(String cartId) {
+        this();
         this.cartId = cartId;
     }
 
@@ -23,11 +32,11 @@ public class Cart {
         this.cartId = cartId;
     }
 
-    public Map<String, Item> getProducts() {
+    public Map<Integer, Item> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<String, Item> products) {
+    public void setProducts(Map<Integer, Item> products) {
         this.products = products;
     }
 
@@ -47,6 +56,7 @@ public class Cart {
                 ", totalValue=" + totalValue +
                 '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,6 +69,7 @@ public class Cart {
         return totalValue != null ? totalValue.equals(cart.totalValue) : cart.totalValue == null;
 
     }
+
     @Override
     public int hashCode() {
         int result = cartId != null ? cartId.hashCode() : 0;
@@ -70,7 +81,7 @@ public class Cart {
     public void addItemToCart(Item item) {
         System.out.println("I'm in addItemToCart method in Cart model controller. Item to be added: " + item.getProduct().getId());
 
-        String itemId = String.valueOf(item.getProduct().getId());
+        Integer itemId = item.getProduct().getId();
 
         if (products.containsKey(itemId)) {
             Item alreadyInCart = products.get(itemId);
@@ -85,11 +96,11 @@ public class Cart {
     public void updateTotalValue() {
         totalValue = new BigDecimal(0);
         for (Item item : products.values()) {
-            totalValue = totalValue.add(item.totalValue());
+            totalValue = totalValue.add(item.getTotalValue());
         }
     }
 
-    public void removeItem(Item item){
+    public void removeItem(Item item) {
         products.remove(item.getProduct().getId());
         updateTotalValue();
 

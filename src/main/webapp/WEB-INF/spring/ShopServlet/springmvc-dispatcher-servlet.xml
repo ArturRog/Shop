@@ -48,4 +48,33 @@
 		</property>
 	</bean>
 
+
+
+    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10240000"/>
+    </bean>
+
+
+
+
+
+
+
+	<!-- Configure to plugin JSON as request and response in method handler -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonMessageConverter"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Configure bean to convert JSON to POJO and vice versa -->
+	<bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	</bean>
+
+
+
+
+
 </beans>

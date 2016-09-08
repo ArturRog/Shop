@@ -47,12 +47,10 @@ var cartApp = angular.module('cartApp', []);
             $http({
                 method: 'GET',
                 url: 'http://localhost:8080/rest/cart/' + cartId
-            }).then(function successRefresh(singleCart) {
-                $scope.cart = singleCart;
-                console.log("Success, im inside");
-                console.log(singleCart);
-                console.log("After");
-            }, function errorCallback(singleCart) {
+            }).then(function successRefresh(data) {
+                $scope.cart = data.data;
+                console.log($scope.cart);
+            }, function errorCallback(data) {
                 console.log("error in refreshCart");
             });
 

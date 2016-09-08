@@ -1,5 +1,6 @@
 package com.rog.webshop.model.product;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -7,12 +8,16 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
+@XmlRootElement
 @Entity
 @Table(name = "PRODUCT")
-public class Product {
+public class Product implements Serializable{
 
+    private static final long serialVersionUID = -6461657159577643747L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,6 +36,7 @@ public class Product {
     @Column(name = "PRODUCT_DESCRIPTION")
     private String productDescription;
 
+    @JsonIgnore
     @NotNull(message = "NotNull.Product.category.validation")
     @ManyToOne(cascade = CascadeType.MERGE)
     private Category category;
