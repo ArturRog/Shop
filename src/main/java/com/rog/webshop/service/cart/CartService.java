@@ -7,4 +7,5 @@ public interface CartService {
     Cart read(String cartId);
     void update(Cart cart, String cartId);
     void delete(String cartId);
+    Cart validate(String cartId);
 }

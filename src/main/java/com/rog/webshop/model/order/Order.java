@@ -1,95 +1,34 @@
 package com.rog.webshop.model.order;
 
+import com.rog.webshop.model.cart.Cart;
 import com.rog.webshop.model.user.User;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
 
-public class Order {
+public class Order implements Serializable {
 
+    private static final long serialVersionUID = -167040897500768764L;
     //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long orderId;
 
-    //    @Column(name = "ORDER_DATE")
-//    @NotEmpty
-    private Date orderDate;
-
-    //    @NotEmpty
-//    @Column(name = "TOTAL_PRICE")
-    private BigDecimal totalPrice;
-
-//    @NotEmpty
-//@ManyToOne(fetch = FetchType.LAZY)
+    private Cart cart;
     private User user;
+    private ShippingDetail shippingDetail;
 
-//    private CartDao cart;
-
-    //    @OneToMany
-    private Set<OrderDetails> orderDetails = new HashSet<OrderDetails>();
-
-
-    public Order(){
+    public Order() {
+        this.user = new User();
+        this.shippingDetail = new ShippingDetail();
     }
 
-    public Order(Integer id, Date orderDate, BigDecimal totalPrice, User user, Set<OrderDetails> orderDetails) {
-        this.id = id;
-        this.orderDate = orderDate;
-        this.totalPrice = totalPrice;
-        this.user = user;
-        this.orderDetails = orderDetails;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Set<OrderDetails> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(Set<OrderDetails> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
 
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
-                ", orderDate=" + orderDate +
-                ", totalPrice=" + totalPrice +
+                "orderId=" + orderId +
+                ", cart=" + cart +
                 ", user=" + user +
-                ", orderDetails=" + orderDetails +
+                ", shippingDetail=" + shippingDetail +
                 '}';
     }
 
@@ -100,21 +39,55 @@ public class Order {
 
         Order order = (Order) o;
 
-        if (id != null ? !id.equals(order.id) : order.id != null) return false;
-        if (orderDate != null ? !orderDate.equals(order.orderDate) : order.orderDate != null) return false;
-        if (totalPrice != null ? !totalPrice.equals(order.totalPrice) : order.totalPrice != null) return false;
+        if (orderId != null ? !orderId.equals(order.orderId) : order.orderId != null) return false;
+        if (cart != null ? !cart.equals(order.cart) : order.cart != null) return false;
         if (user != null ? !user.equals(order.user) : order.user != null) return false;
-        return orderDetails != null ? orderDetails.equals(order.orderDetails) : order.orderDetails == null;
+        return shippingDetail != null ? shippingDetail.equals(order.shippingDetail) : order.shippingDetail == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
-        result = 31 * result + (totalPrice != null ? totalPrice.hashCode() : 0);
+        int result = orderId != null ? orderId.hashCode() : 0;
+        result = 31 * result + (cart != null ? cart.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (orderDetails != null ? orderDetails.hashCode() : 0);
+        result = 31 * result + (shippingDetail != null ? shippingDetail.hashCode() : 0);
         return result;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ShippingDetail getShippingDetail() {
+        return shippingDetail;
+    }
+
+    public void setShippingDetail(ShippingDetail shippingDetail) {
+        this.shippingDetail = shippingDetail;
     }
 }
