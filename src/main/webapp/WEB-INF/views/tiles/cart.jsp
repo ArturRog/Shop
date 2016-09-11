@@ -30,7 +30,7 @@
                 <td>{{item.product.productPrice}}</td>
                 <td>{{item.quantity}}</td>
                 <td>{{item.totalValue}}</td>
-                <td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">
+                <td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.id)">
                     <span class="glyphicon glyphicon-remove"/></span> Delete
                 </a></td>
             </tr>

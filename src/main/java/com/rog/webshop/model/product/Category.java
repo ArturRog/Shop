@@ -5,10 +5,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "CATEGORY")
-public class Category {
+public class Category implements Serializable {
+
+    private static final long serialVersionUID = 7728135118671324990L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,12 +19,12 @@ public class Category {
 
     @Size(min = 4, max = 40, message = "{Size.Category.categoryName.validation}")
     @NotEmpty(message = "NotEmpty.Category.categoryName.validation")
-    @Column(name = "CATEGORY_NAME",length=15, unique=true, nullable=false)
+    @Column(name = "CATEGORY_NAME", length = 15, unique = true, nullable = false)
     private String categoryName;
 //    = CategoryName.PROTEINS.getCategoryName();
 
 
-    public int getId    () {
+    public int getId() {
         return id;
     }
 

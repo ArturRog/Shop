@@ -1,7 +1,6 @@
 package com.rog.webshop.model.order;
 
 import com.rog.webshop.model.cart.Cart;
-import com.rog.webshop.model.user.User;
 
 import java.io.Serializable;
 
@@ -10,14 +9,15 @@ public class Order implements Serializable {
     private static final long serialVersionUID = -167040897500768764L;
     //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
 
+
+    private Long orderId;
     private Cart cart;
-    private User user;
+    private Customer customer;
     private ShippingDetail shippingDetail;
 
     public Order() {
-        this.user = new User();
+        this.customer = new Customer();
         this.shippingDetail = new ShippingDetail();
     }
 
@@ -27,7 +27,7 @@ public class Order implements Serializable {
         return "Order{" +
                 "orderId=" + orderId +
                 ", cart=" + cart +
-                ", user=" + user +
+                ", customer=" + customer +
                 ", shippingDetail=" + shippingDetail +
                 '}';
     }
@@ -41,7 +41,7 @@ public class Order implements Serializable {
 
         if (orderId != null ? !orderId.equals(order.orderId) : order.orderId != null) return false;
         if (cart != null ? !cart.equals(order.cart) : order.cart != null) return false;
-        if (user != null ? !user.equals(order.user) : order.user != null) return false;
+        if (customer != null ? !customer.equals(order.customer) : order.customer != null) return false;
         return shippingDetail != null ? shippingDetail.equals(order.shippingDetail) : order.shippingDetail == null;
 
     }
@@ -50,13 +50,9 @@ public class Order implements Serializable {
     public int hashCode() {
         int result = orderId != null ? orderId.hashCode() : 0;
         result = 31 * result + (cart != null ? cart.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (customer != null ? customer.hashCode() : 0);
         result = 31 * result + (shippingDetail != null ? shippingDetail.hashCode() : 0);
         return result;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public Long getOrderId() {
@@ -75,12 +71,12 @@ public class Order implements Serializable {
         this.cart = cart;
     }
 
-    public User getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public ShippingDetail getShippingDetail() {

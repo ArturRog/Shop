@@ -2,10 +2,13 @@ package com.rog.webshop.model.order;
 
 import com.rog.webshop.model.product.Product;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class OrderDetails {
+public class OrderDetails implements Serializable{
 
+
+    private static final long serialVersionUID = -5141779519646330300L;
     //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
