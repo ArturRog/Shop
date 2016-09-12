@@ -2,51 +2,57 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
-							http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-    <var name="order" class="com.rog.webshop.model.order.Order" />
+    <var name="order" class="com.rog.webshop.model.order.Order"/>
 
     <action-state id="addCartToOrder">
         <evaluate expression="cartService.validate(requestParameters.cartId)"
-                  result="order.cart" />
+                  result="order.cart"/>
         <transition to="InvalidCartWarning"
-                    on-exception="com.rog.webshop.exception.InvalidCartException" />
-        <transition to="collectCustomerInfo" />
+                    on-exception="com.rog.webshop.exception.InvalidCartException"/>
+        <transition to="collectCustomerInfo"/>
     </action-state>
 
-    <view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
-        <transition on="customerInfoCollected" to="collectShippingDetail" />
+    <view-state id="collectCustomerInfo" model="order">
+        <!--<binder>-->
+        <!--<binding property="customer.customerId" required="true"  />-->
+        <!--<binding property="customer.name" required="true" />-->
+        <!--<binding property="customer.billingAddress" required="true" />-->
+        <!--<binding property="customer.phoneNumber" required="true" />-->
+        <!--</binder>-->
+        <transition on="customerInfoCollected" to="collectShippingDetail"/>
     </view-state>
 
     <view-state id="collectShippingDetail" model="order">
-        <transition on="shippingDetailCollected" to="orderConfirmation" />
-        <transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
+        <transition on="shippingDetailCollected" to="orderConfirmation"/>
+        <transition on="backToCollectCustomerInfo" to="collectCustomerInfo"/>
     </view-state>
 
-    <view-state id="orderConfirmation">
-        <transition on="orderConfirmed" to="processOrder" />
-        <transition on="backToCollectShippingDetail" to="collectShippingDetail" />
+    <view-state id="orderConfirmation" view="orderConfirmation.jsp">
+        <transition on="orderConfirmed" to="processOrder"/>
+        <transition on="backToCollectShippingDetail" to="collectShippingDetail"/>
     </view-state>
 
     <action-state id="processOrder">
         <evaluate expression="orderService.saveOrder(order)" result="order.orderId"/>
-        <transition to="thankCustomer" />
+        <transition to="thankCustomer"/>
     </action-state>
 
-    <view-state id="InvalidCartWarning">
+    <view-state id="InvalidCartWarning" view="InvalidCartWarning.jsp">
         <transition to="endState"/>
     </view-state>
 
-    <view-state id="thankCustomer" model="order">
+    <view-state id="thankCustomer" model="order" view="thankCustomer.jsp">
         <transition to="endState"/>
     </view-state>
 
     <end-state id="endState"/>
 
-    <end-state id="cancelCheckout" view = "checkOutCancelled.jsp"/>
+    <end-state id="cancelCheckout" view="checkOutCancelled.jsp"/>
 
     <global-transitions>
-        <transition on = "cancel" to="endState" />
+        <transition on="cancel" to="endState"/>
     </global-transitions>
 
 </flow>

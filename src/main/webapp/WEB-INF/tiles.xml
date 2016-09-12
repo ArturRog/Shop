@@ -79,6 +79,44 @@
         <put-attribute name="body" value="/WEB-INF/views/tiles/addProduct.jsp"></put-attribute>
     </definition>
 
+    <!--<definition name="checkOutCancelled" extends="shop.base">-->
+        <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
+        <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/checkOutCancelled.jsp"></put-attribute>-->
+    <!--</definition>-->
+
+
+    <!--<definition name="collectCustomerInfo" extends="shop.base">-->
+        <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
+        <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/collectCustomerInfo.jsp"></put-attribute>-->
+    <!--</definition>-->
+
+
+    <!--<definition name="collectShippingDetail" extends="shop.base">-->
+        <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
+        <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/collectShippingDetail.jsp"></put-attribute>-->
+    <!--</definition>-->
+
+
+    <!--<definition name="InvalidCartWarning" extends="shop.base">-->
+        <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
+        <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/InvalidCartWarning.jsp"></put-attribute>-->
+    <!--</definition>-->
+
+
+    <!--<definition name="orderConfirmation" extends="shop.base">-->
+        <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
+        <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/orderConfirmation.jsp"></put-attribute>-->
+    <!--</definition>-->
+
+
+    <!--<definition name="thankCustomer" extends="shop.base">-->
+        <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
+        <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/thankCustomer.jsp"></put-attribute>-->
+    <!--</definition>-->
+
+
+
+
 
 
 

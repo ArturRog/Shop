@@ -11,7 +11,12 @@
  http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.4.xsd">
 
     <context:component-scan base-package="com.rog.webshop.controller"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!--<mvc:default-servlet-handler default-servlet-name="myCustomDefaultServlet"/>-->
+    <mvc:annotation-driven conversion-service="conversionService" enable-matrix-variables="true" validator="validator"/>
 
+
+    <!--TILES -->
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
             <list>
@@ -21,17 +26,26 @@
     </bean>
 
     <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass">
-            <value>
-                org.springframework.web.servlet.view.tiles3.TilesView
-            </value>
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.tiles3.TilesView">
         </property>
-        <property name="order" value="0"/>
+        <property name="order" value="-2"/>
     </bean>
 
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
-    <!--<mvc:default-servlet-handler default-servlet-name="myCustomDefaultServlet"/>-->
-    <mvc:annotation-driven conversion-service="conversionService" enable-matrix-variables="true" validator="validator"/>
+    <!--<bean id="tilesViewResolver"-->
+          <!--class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">-->
+    <!--</bean>-->
+
+
+
+
+
+
+
+
+
+
+
 
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="validationMessageSource" ref="messageSource"/>
@@ -58,18 +72,59 @@
 
 
     <!--WEBFLOW CONFIG-->
-    <webflow-config:flow-executor id="flowExecutor" flow-registry="flowRegistry"/>
-    <webflow-config:flow-registry id="flowRegistry" base-path="WEB-INF/flows">
-        <webflow-config:flow-location path="/checkout/checkout-flow.xml" id="checkout"/>
+    <webflow-config:flow-executor id="flowExecutor"
+    flow-registry="flowRegistry"/>
+    <!--<webflow-config:flow-builder-services id="flowBuilderServices"-->
+    <!--validator="validator"-->
+    <!--view-factory-creator="mvcViewFactoryCreator"/>-->
+    <webflow-config:flow-registry id="flowRegistry"
+    base-path="WEB-INF/flows">
+    <!--flow-builder-services="flowBuilderServices">-->
+    <webflow-config:flow-location path="/checkout/checkout-flow.xml"
+    id="checkout"/>
     </webflow-config:flow-registry>
 
 
+    <!-- Configures Web Flow to use Tiles to create views for rendering; Tiles allows for applying consistent layouts to your views -->
+    <bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+    <property name="viewResolvers" ref="tilesViewResolver" />
+    </bean>
     <bean id="flowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-        <property name="flowRegistry" ref="flowRegistry"/>
+    <property name="flowRegistry" ref="flowRegistry"/>
+    <property name="order" value="-1"/>
     </bean>
     <bean id="flowHandlerAdapter" class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
-        <property name="flowExecutor" ref="flowExecutor"/>
+    <property name="flowExecutor" ref="flowExecutor"/>
     </bean>
+
+
+    <!--<webflow-config:flow-registry id="flowRegistry"-->
+                                  <!--base-path="WEB-INF/flows"-->
+                                  <!--flow-builder-services="flowBuilderServices">-->
+        <!--<webflow-config:flow-location path="checkout/checkout-flow.xml" id="checkout"/>-->
+    <!--</webflow-config:flow-registry>-->
+
+    <!--<webflow-config:flow-executor id="flowExecutor" flow-registry="flowRegistry">-->
+    <!--</webflow-config:flow-executor>-->
+
+    <!--<bean id="flowHandlerAdapter" class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">-->
+        <!--<property name="flowExecutor" ref="flowExecutor"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="flowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">-->
+        <!--<property name="flowRegistry" ref="flowRegistry"/>-->
+        <!--<property name="order" value="0"/>-->
+    <!--</bean>-->
+
+    <!--<webflow-config:flow-builder-services id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator"/>-->
+    <!--<bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">-->
+        <!--<property name="viewResolvers" ref="tilesViewResolver"/>-->
+    <!--</bean>-->
+
+
+
+
+
 
 
     <!-- Configure to plugin JSON as request and response in method handler -->
@@ -77,12 +132,15 @@
         <property name="messageConverters">
             <list>
                 <ref bean="jsonMessageConverter"/>
+                <ref bean="marshallingHttpMessageConverter"/>
             </list>
         </property>
     </bean>
-
     <!-- Configure bean to convert JSON to POJO and vice versa -->
     <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    </bean>
+    <bean id="marshallingHttpMessageConverter"
+          class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
     </bean>
 
 

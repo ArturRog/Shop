@@ -1,14 +1,25 @@
 package com.rog.webshop.model.order;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class Customer implements Serializable{
 
 	private static final long serialVersionUID = 2284040482222162898L;
-	
+
+	@Size(min = 3, max = 40, message = "{Size.Product.productName.validation}")
+	@Column(name = "PRODUCT_NAME")
 	private String customerId;
+
+	@Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
+	@Column(name = "PRODUCT_NAME")
 	private String name;
+
 	private Address billingAddress;
+
+	@Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
+	@Column(name = "PRODUCT_NAME")
 	private String phoneNumber;
 	
 	public Customer() {

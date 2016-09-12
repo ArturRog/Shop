@@ -2,6 +2,8 @@ package com.rog.webshop.model.order;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,10 +12,14 @@ public class ShippingDetail implements Serializable {
 
     private static final long serialVersionUID = 598734471727299693L;
 
+    @Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
+    @Column(name = "PRODUCT_NAME")
     private String name;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date shippingDate;
+
+
     private Address shippingAddress;
 
 

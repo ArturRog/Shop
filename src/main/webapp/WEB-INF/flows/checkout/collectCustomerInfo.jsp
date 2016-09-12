@@ -23,11 +23,13 @@
 		<form:form modelAttribute="order.customer" class="form-horizontal">
 			<fieldset>
 				<legend>Customer Details</legend>
+				<form:errors path="*" cssClass="alert alert-danger" element="div"/>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="customerId" />Customer Id</label>
 					<div class="col-lg-10">
 						<form:input id="customerId" path="customerId" type="text" class="form:input-large" />
+						<form:errors path="customerId" class="help-inline"/>
 					</div>
 				</div>
 
@@ -35,6 +37,7 @@
 					<label class="control-label col-lg-2" for="name">Name</label>
 					<div class="col-lg-10">
 						<form:input id="name" path="name" type="text" class="form:input-large" />
+						<form:errors path="customerId" class="help-inline"/>
 					</div>
 				</div>
 
@@ -43,6 +46,7 @@
 					<div class="col-lg-10">
 						<form:input id="doorNo" path="billingAddress.doorNo" type="text"
 							class="form:input-large" />
+                        <form:errors path="billingAddress.doorNo" class="help-inline"/>
 					</div>
 				</div>
 
@@ -85,7 +89,7 @@
 							class="form:input-large" />
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="phoneNumber">Phone Number</label>
 					<div class="col-lg-10">
@@ -95,7 +99,7 @@
 				</div>
 
 				<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
-				
+
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<input type="submit" id="btnAdd" class="btn btn-primary"
