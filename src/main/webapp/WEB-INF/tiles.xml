@@ -91,12 +91,6 @@
     <!--</definition>-->
 
 
-    <!--<definition name="collectShippingDetail" extends="shop.base">-->
-        <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
-        <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/collectShippingDetail.jsp"></put-attribute>-->
-    <!--</definition>-->
-
-
     <!--<definition name="InvalidCartWarning" extends="shop.base">-->
         <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
         <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/InvalidCartWarning.jsp"></put-attribute>-->

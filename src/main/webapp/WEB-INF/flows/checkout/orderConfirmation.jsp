@@ -38,12 +38,12 @@
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<address>
 								<strong>Shipping Address</strong> <br>
-								${order.shippingDetail.name}<br>
-								${order.shippingDetail.shippingAddress.doorNo},${order.shippingDetail.shippingAddress.streetName}
+								${order.user.lastName} ${order.user.firstName}<br>
+								${order.user.doorNo},${order.user.streetName}
 								<br>
-								${order.shippingDetail.shippingAddress.areaName},${order.shippingDetail.shippingAddress.state}
+								${order.user.areaName},${order.user.stateName}
 								<br>
-								${order.shippingDetail.shippingAddress.country},${order.shippingDetail.shippingAddress.zipCode}
+								${order.user.country},${order.user.zipCode}
 								<br>
 							</address>
 						</div>
@@ -54,22 +54,6 @@
 										<%--value="${order.shippingDetail.shippingDate}" /></em>--%>
 							</p>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6">
-							<address>
-								<strong>Billing Address</strong> <br>
-								${order.customer.name}<br>
-								${order.customer.billingAddress.doorNo},${order.customer.billingAddress.streetName}
-								<br>
-								${order.customer.billingAddress.areaName},${order.customer.billingAddress.state}
-								<br>
-								${order.customer.billingAddress.country},${order.customer.billingAddress.zipCode}
-								<br> <abbr title="Phone">P:</abbr>
-								${order.customer.phoneNumber}
-							</address>
-						</div>
-
 					</div>
 					<div class="row">
 

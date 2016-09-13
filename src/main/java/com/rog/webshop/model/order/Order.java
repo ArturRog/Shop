@@ -6,6 +6,7 @@ import com.rog.webshop.model.user.User;
 import java.io.Serializable;
 
 
+
 //@Entity
 //@Table(name = "ORDER")
 public class Order implements Serializable {
@@ -15,17 +16,15 @@ public class Order implements Serializable {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
+
     private Cart cart;
 
 //    @OneToOne
     private User user;
 
-//    @OneToOne
-    private ShippingDetail shippingDetail;
 
     public Order() {
         this.user = new User();
-        this.shippingDetail = new ShippingDetail();
     }
 
     @Override
@@ -34,13 +33,11 @@ public class Order implements Serializable {
                 "orderId=" + orderId +
                 ", cart=" + cart +
                 ", user=" + user +
-                ", shippingDetail=" + shippingDetail +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -48,11 +45,8 @@ public class Order implements Serializable {
 
         if (orderId != order.orderId) return false;
         if (cart != null ? !cart.equals(order.cart) : order.cart != null) return false;
-        if (user != null ? !user.equals(order.user) : order.user != null) return false;
-        if (shippingDetail != null ? !shippingDetail.equals(order.shippingDetail) : order.shippingDetail != null)
-            return false;
+        return user != null ? user.equals(order.user) : order.user == null;
 
-        return true;
     }
 
     @Override
@@ -60,7 +54,6 @@ public class Order implements Serializable {
         int result = orderId;
         result = 31 * result + (cart != null ? cart.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (shippingDetail != null ? shippingDetail.hashCode() : 0);
         return result;
     }
 
@@ -90,13 +83,5 @@ public class Order implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public ShippingDetail getShippingDetail() {
-        return shippingDetail;
-    }
-
-    public void setShippingDetail(ShippingDetail shippingDetail) {
-        this.shippingDetail = shippingDetail;
     }
 }

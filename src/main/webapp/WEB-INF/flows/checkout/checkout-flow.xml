@@ -33,17 +33,17 @@
         <!--<binding property="customer.billingAddress" required="true" />-->
         <!--<binding property="customer.phoneNumber" required="true" />-->
         <!--</binder>-->
-        <transition on="customerInfoCollected" to="collectShippingDetail"/>
+        <transition on="customerInfoCollected" to="orderConfirmation"/>
     </view-state>
 
-    <view-state id="collectShippingDetail" model="order">
-        <transition on="shippingDetailCollected" to="orderConfirmation"/>
-        <transition on="backToCollectCustomerInfo" to="collectCustomerInfo"/>
-    </view-state>
+    <!--<view-state id="collectShippingDetail" model="order">-->
+        <!--<transition on="shippingDetailCollected" to="orderConfirmation"/>-->
+        <!--<transition on="backToCollectCustomerInfo" to="collectCustomerInfo"/>-->
+    <!--</view-state>-->
 
     <view-state id="orderConfirmation" view="orderConfirmation.jsp">
         <transition on="orderConfirmed" to="processOrder"/>
-        <transition on="backToCollectShippingDetail" to="collectShippingDetail"/>
+        <transition on="backToCollectShippingDetail" to="collectCustomerInfo"/>
     </view-state>
 
     <action-state id="processOrder">

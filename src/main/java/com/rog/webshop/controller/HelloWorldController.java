@@ -5,6 +5,7 @@ import com.rog.webshop.model.user.User;
 import com.rog.webshop.model.user.UserProfile;
 import com.rog.webshop.service.user.UserProfileService;
 import com.rog.webshop.service.user.UserService;
+import com.rog.webshop.validator.ValidateOnCreationOnly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,13 +14,13 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -87,7 +88,7 @@ public class HelloWorldController {
 	 * also validates the user input
 	 */
 	@RequestMapping(value = "/createaccount", method = RequestMethod.POST)
-	public String saveRegistration(@Valid User user,
+	public String saveRegistration(@Validated(ValidateOnCreationOnly.class) User user,
                                    BindingResult result, ModelMap model) {
 
 
@@ -105,12 +106,10 @@ public class HelloWorldController {
 		System.out.println("Checking UsrProfiles....");
 
 		if (user.getUserProfiles().isEmpty()){
-//			user.setUserProfiles((Set<UserProfile>)userProfileService.findById(1));
 			Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 			userProfiles.add(userProfileService.findById(1));
 			user.setUserProfiles(userProfiles);
 			System.out.println(user.getUserProfiles());
-			System.out.println("^^^^^^^^^^^^^^^");
 		}
 
 		if(user.getUserProfiles()!=null){
@@ -118,14 +117,6 @@ public class HelloWorldController {
 				System.out.println("Profile : "+ profile.getType());
 			}
 		}
-//		else{
-//
-//			user.setUserProfiles(new HashSet<UserProfile>(userProfileService.findById(1)));
-//			for(UserProfile profile : user.getUserProfiles()){
-//				System.out.println("Profile : "+ profile.getType());
-//			}
-//		}
-
 			userService.save(user);
 
 		model.addAttribute("success", "User " + user.getFirstName() + " has been registered successfully");
@@ -133,11 +124,7 @@ public class HelloWorldController {
 		return "registrationsuccess";
 	}
 
-//	@RequestMapping(value = "/registrationsuccess")
-//	public String registrationSuccess(){
-//		return "registrationsuccess";
-//	}
-	
+
 	
 	
 	private String getPrincipal(){

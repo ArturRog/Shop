@@ -1,12 +1,13 @@
 package com.rog.webshop.model.user;
 
 
-import com.rog.webshop.model.order.Address;
 import com.rog.webshop.validator.UserSsoId;
+import com.rog.webshop.validator.ValidateOnCreationOnly;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -24,7 +25,7 @@ public class User implements Serializable
     private int id;
 
     @NotEmpty
-    @UserSsoId
+    @UserSsoId(groups = ValidateOnCreationOnly.class)
     @Size(min = 3, max = 15, message = "{Size.User.ssoId.validation}")
     @Column(name = "SSO_ID", unique = true, nullable = false)
     private String ssoId;
@@ -34,20 +35,85 @@ public class User implements Serializable
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    @NotEmpty
-    @Size(min = 6, max = 15, message = "{Size.User.password.validation}")
+//    @NotEmpty
+//    @Size(min = 6, max = 15, message = "{Size.User.password.validation}")
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
 
+    ///////////////////////////////////////////////////////
+    @Size(min = 3, max = 50, message = "{Size.User.streetName.validation}")
+    @Column(name = "STREET_NAME", length = 50)
+    private String streetName;
+    @Min(value = 1, message = "{Min.User.doorNo.validation}")
+    @Column(name = "DOOR_NO")
+    private String doorNo;
+    @Size(min = 3, max = 20, message = "{Size.User.areaName.validation}")
+    @Column(name = "AREA_NAME", length = 20)
+    private String areaName;
+    @Size(min = 3, max = 50, message = "{Size.User.state.validation}")
+    @Column(name = "STATE_NAME", length = 50)
+    private String stateName;
+    @Size(min = 3, max = 25, message = "{Size.User.country.validation}")
+    @Column(name = "COUNTRY", length = 25)
+    private String country;
+    @Size(min = 2, max = 10, message = "{Size.User.zipCode.validation}")
+    @Column(name = "ZIP_CODE", length = 10)
+    private String zipCode;
+
+    public String getDoorNo() {
+
+        return doorNo;
+    }
+
+    public void setDoorNo(String doorNo) {
+        this.doorNo = doorNo;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+///////////////////////////////////////////////////////
 
 
-    @OneToOne
-    @JoinColumn(name = "addressId")
-    private Address billingAddress;
-
-
-    @Column(name = "PhoneNumber", nullable = false, length = 15)
+    @Column(name = "PHONE_NUMBER", nullable = false, length = 15)
     private String phoneNumber;
 
     @NotEmpty
@@ -72,22 +138,6 @@ public class User implements Serializable
     private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
 
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "ssoId='" + ssoId + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", billingAddress=" + billingAddress +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", state='" + state + '\'' +
-                ", userProfiles=" + userProfiles +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,32 +145,15 @@ public class User implements Serializable
 
         User user = (User) o;
 
-        if (id != user.id) return false;
         if (ssoId != null ? !ssoId.equals(user.ssoId) : user.ssoId != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (billingAddress != null ? !billingAddress.equals(user.billingAddress) : user.billingAddress != null)
-            return false;
-        if (phoneNumber != null ? !phoneNumber.equals(user.phoneNumber) : user.phoneNumber != null) return false;
-        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
-        if (state != null ? !state.equals(user.state) : user.state != null) return false;
-        return userProfiles != null ? userProfiles.equals(user.userProfiles) : user.userProfiles == null;
+        return password != null ? password.equals(user.password) : user.password == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (ssoId != null ? ssoId.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
+        int result = ssoId != null ? ssoId.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (billingAddress != null ? billingAddress.hashCode() : 0);
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + (userProfiles != null ? userProfiles.hashCode() : 0);
         return result;
     }
 
@@ -148,13 +181,18 @@ public class User implements Serializable
         this.password = password;
     }
 
-    public Address getBillingAddress() {
-        return billingAddress;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setBillingAddress(Address billingAddress) {
-        this.billingAddress = billingAddress;
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public String getPhoneNumber() {
         return phoneNumber;

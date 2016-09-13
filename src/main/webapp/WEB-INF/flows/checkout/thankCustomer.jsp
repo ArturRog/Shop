@@ -8,15 +8,14 @@
 	<meta http-equiv="Content-Type" content="text/html;" charset="utf-8"/>
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Invalid cart </title>
+<title>Order confirmed </title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
 				<h1 class="alert alert-danger"> Thank you</h1>
-				<p>Thanks for the order. your order will be delivered to you on 
-				<fmt:formatDate type="date"	value="${order.shippingDetail.shippingDate}" />!</p>
+				<p>Thanks for the order. your order will be delivered to you in a few days!</p>
 				<p>Your Order Number is ${order.orderId}</p>
 			</div>
 		</div>

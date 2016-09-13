@@ -60,19 +60,18 @@
 					</div>
 				</div>
 
-				<%--<div class="form-group">--%>
-					<%--<label class="control-label col-lg-2" for="doorNo">Door No</label>--%>
-					<%--<div class="col-lg-10">--%>
-						<%--<form:input id="doorNo" path="billingAddress.doorNo" type="text"--%>
-							<%--class="form:input-large" />--%>
-                        <%--<form:errors path="billingAddress.doorNo" class="help-inline"/>--%>
-					<%--</div>--%>
-				<%--</div>--%>
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="doorNo">Door No</label>
+					<div class="col-lg-10">
+						<form:input id="doorNo" path="doorNo" type="text"
+							class="form:input-large" />
+					</div>
+				</div>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="streetName">Street Name</label>
 					<div class="col-lg-10">
-						<form:input id="streetName" path="billingAddress.streetName." type="text"
+						<form:input id="streetName" path="streetName" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -80,7 +79,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="areaName">Area Name</label>
 					<div class="col-lg-10">
-						<form:input id="areaName" path="billingAddress.areaName" type="text"
+						<form:input id="areaName" path="areaName" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -88,7 +87,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="state">State</label>
 					<div class="col-lg-10">
-						<form:input id="state" path="billingAddress.state" type="text"
+						<form:input id="state" path="stateName" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -96,7 +95,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="country">country</label>
 					<div class="col-lg-10">
-						<form:input id="country" path="billingAddress.country" type="text"
+						<form:input id="country" path="country" type="text"
 							class="form:input-large" />
 					</div>
 				</div>
@@ -104,15 +103,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="zipCode">Zip Code</label>
 					<div class="col-lg-10">
-						<form:input id="zipCode" path="billingAddress.zipCode" type="text"
-							class="form:input-large" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="phoneNumber">Phone Number</label>
-					<div class="col-lg-10">
-						<form:input id="phoneNumber" path="phoneNumber" type="text"
+						<form:input id="zipCode" path="zipCode" type="text"
 							class="form:input-large" />
 					</div>
 				</div>

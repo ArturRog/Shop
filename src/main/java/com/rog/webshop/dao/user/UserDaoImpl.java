@@ -39,7 +39,12 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         newUser.setLastName(user.getLastName());
         newUser.setFirstName(user.getFirstName());
         newUser.setPhoneNumber(user.getPhoneNumber());
-        newUser.setBillingAddress(user.getBillingAddress());
+        newUser.setStreetName(user.getStreetName());
+        newUser.setDoorNo(user.getDoorNo());
+        newUser.setAreaName(user.getAreaName());
+        newUser.setStateName(user.getStateName());
+        newUser.setCountry(user.getCountry());
+        newUser.setZipCode(user.getZipCode());
 
 
     }
