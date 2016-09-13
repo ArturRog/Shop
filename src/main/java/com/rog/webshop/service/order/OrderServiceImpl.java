@@ -6,8 +6,10 @@ import com.rog.webshop.dao.product.ProductDao;
 import com.rog.webshop.model.order.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("orderService")
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -23,8 +25,8 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    public Long saveOrder(Order order) {
-        Long orderId =  orderDao.saveOrder(order);
+    public int saveOrder(Order order) {
+        int orderId =  orderDao.saveOrder(order);
         cartDao.delete(order.getCart().getCartId());
         return orderId;
     }

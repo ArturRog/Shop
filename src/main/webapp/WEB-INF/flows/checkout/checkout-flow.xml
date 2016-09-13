@@ -13,6 +13,18 @@
                     on-exception="com.rog.webshop.exception.InvalidCartException"/>
         <transition to="collectCustomerInfo"/>
     </action-state>
+    
+    <!--<decision-state id="isCustomerExist">-->
+        <!--<if test="customerService.isCustomerExist()"-->
+            <!--then="customerExist"-->
+            <!--else="collectCustomerInfo"/>-->
+    <!--</decision-state>-->
+
+    <!--<action-state id="customerExist">-->
+        <!--<evaluate expression="customerService.getCustomer(currentUser.name)"-->
+                  <!--result="order.customer"/>-->
+        <!--<transition to="collectShippingDetail"/>-->
+    <!--</action-state>-->
 
     <view-state id="collectCustomerInfo" model="order">
         <!--<binder>-->

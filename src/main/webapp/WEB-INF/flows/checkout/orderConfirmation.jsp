@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<jsp:useBean id="now" class="java.util.Date" />
 
 <html>
 <head>
@@ -48,8 +49,9 @@
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6 text-right">
 							<p>
-								<em>Shipping DateDate: <fmt:formatDate type="date"
-										value="${order.shippingDetail.shippingDate}" /></em>
+								Shipping Date: <fmt:formatDate type="date" value="${now}" />
+								<%--<em>Shipping DateDate: <fmt:formatDate type="date"--%>
+										<%--value="${order.shippingDetail.shippingDate}" /></em>--%>
 							</p>
 						</div>
 					</div>

@@ -1,6 +1,7 @@
 package com.rog.webshop.dao.user;
 
 import com.rog.webshop.dao.AbstractDao;
+import com.rog.webshop.exception.CustomerNotFoundException;
 import com.rog.webshop.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -9,18 +10,37 @@ import org.springframework.stereotype.Repository;
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
-	public void save(User user) {
-		persist(user);
-	}
-	
-	public User findById(int id) {
-		return getByKey(id);
-	}
+    public void save(User user) {
+        persist(user);
+    }
 
-	public User findBySSO(String sso) {
-		Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("ssoId", sso));
-		return (User) crit.uniqueResult();
-	}
+    public User findById(int id) {
+        return getByKey(id);
+    }
 
+    public User findByEmail(String email) {
+        Criteria crit = createEntityCriteria();
+        crit.add(Restrictions.eq("email", email));
+        return (User) crit.uniqueResult();
+    }
+
+    public User findBySSO(String sso) {
+        Criteria crit = createEntityCriteria();
+        crit.add(Restrictions.eq("ssoId", sso));
+        return (User) crit.uniqueResult();
+    }
+
+    public void update(User user) {
+        User newUser = findByEmail(user.getEmail());
+        if (newUser == null) {
+            throw new CustomerNotFoundException(user.getEmail());
+        }
+
+        newUser.setLastName(user.getLastName());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setPhoneNumber(user.getPhoneNumber());
+        newUser.setBillingAddress(user.getBillingAddress());
+
+
+    }
 }

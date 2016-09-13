@@ -9,22 +9,22 @@ import java.util.Map;
 @Repository
 public class OrderDaoImpl implements OrderDao {
 
-    private Map<Long,Order> listOfOrders;
-    private long nextOrderId;
+    private Map<Integer,Order> listOfOrders;
+    private int nextOrderId;
 
     public OrderDaoImpl() {
-        this.listOfOrders = new HashMap<Long, Order>();
+        this.listOfOrders = new HashMap<Integer, Order>();
         this.nextOrderId = 1000;
     }
 
-    public Long saveOrder(Order order) {
+    public int saveOrder(Order order) {
         order.setOrderId(getNextOrderId());
         listOfOrders.put(order.getOrderId(), order);
         return order.getOrderId();
 
     }
 
-    private synchronized long getNextOrderId(){
+    private synchronized int getNextOrderId(){
         return nextOrderId++;
     }
 }

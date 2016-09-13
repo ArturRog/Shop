@@ -20,35 +20,54 @@
 		</div>
 	</section>
 	<section class="container">
-		<form:form modelAttribute="order.customer" class="form-horizontal">
+		<form:form modelAttribute="order.user" class="form-horizontal">
 			<fieldset>
 				<legend>Customer Details</legend>
 				<form:errors path="*" cssClass="alert alert-danger" element="div"/>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="customerId" />Customer Id</label>
+					<label class="control-label col-lg-2 col-lg-2" for="ssoId" />SSO ID</label>
 					<div class="col-lg-10">
-						<form:input id="customerId" path="customerId" type="text" class="form:input-large" />
-						<form:errors path="customerId" class="help-inline"/>
+						<form:input id="ssoId" path="ssoId" type="text" class="form:input-large" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="name">Name</label>
+					<label class="control-label col-lg-2" for="email">E-mail</label>
 					<div class="col-lg-10">
-						<form:input id="name" path="name" type="text" class="form:input-large" />
-						<form:errors path="customerId" class="help-inline"/>
+						<form:input id="email" path="email" type="text" class="form:input-large" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="doorNo">Door No</label>
+					<label class="control-label col-lg-2" for="phoneNumber">Phone Number</label>
 					<div class="col-lg-10">
-						<form:input id="doorNo" path="billingAddress.doorNo" type="text"
-							class="form:input-large" />
-                        <form:errors path="billingAddress.doorNo" class="help-inline"/>
+						<form:input id="phoneNumber" path="phoneNumber" type="text" class="form:input-large" />
 					</div>
 				</div>
+
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="firstName">First Name</label>
+					<div class="col-lg-10">
+						<form:input id="firstName" path="firstName" type="text" class="form:input-large" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="lastName">Last Name</label>
+					<div class="col-lg-10">
+						<form:input id="lastName" path="lastName" type="text" class="form:input-large" />
+					</div>
+				</div>
+
+				<%--<div class="form-group">--%>
+					<%--<label class="control-label col-lg-2" for="doorNo">Door No</label>--%>
+					<%--<div class="col-lg-10">--%>
+						<%--<form:input id="doorNo" path="billingAddress.doorNo" type="text"--%>
+							<%--class="form:input-large" />--%>
+                        <%--<form:errors path="billingAddress.doorNo" class="help-inline"/>--%>
+					<%--</div>--%>
+				<%--</div>--%>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="streetName">Street Name</label>

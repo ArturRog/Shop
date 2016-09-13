@@ -1,65 +1,78 @@
 package com.rog.webshop.model.order;
 
 import com.rog.webshop.model.cart.Cart;
+import com.rog.webshop.model.user.User;
 
 import java.io.Serializable;
 
+
+//@Entity
+//@Table(name = "ORDER")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -167040897500768764L;
-    //    @Id
+
+//    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
-    private Long orderId;
+    private int orderId;
     private Cart cart;
-    private Customer customer;
+
+//    @OneToOne
+    private User user;
+
+//    @OneToOne
     private ShippingDetail shippingDetail;
 
     public Order() {
-        this.customer = new Customer();
+        this.user = new User();
         this.shippingDetail = new ShippingDetail();
     }
-
 
     @Override
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
                 ", cart=" + cart +
-                ", customer=" + customer +
+                ", user=" + user +
                 ", shippingDetail=" + shippingDetail +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Order order = (Order) o;
 
-        if (orderId != null ? !orderId.equals(order.orderId) : order.orderId != null) return false;
+        if (orderId != order.orderId) return false;
         if (cart != null ? !cart.equals(order.cart) : order.cart != null) return false;
-        if (customer != null ? !customer.equals(order.customer) : order.customer != null) return false;
-        return shippingDetail != null ? shippingDetail.equals(order.shippingDetail) : order.shippingDetail == null;
+        if (user != null ? !user.equals(order.user) : order.user != null) return false;
+        if (shippingDetail != null ? !shippingDetail.equals(order.shippingDetail) : order.shippingDetail != null)
+            return false;
 
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = orderId != null ? orderId.hashCode() : 0;
+        int result = orderId;
         result = 31 * result + (cart != null ? cart.hashCode() : 0);
-        result = 31 * result + (customer != null ? customer.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (shippingDetail != null ? shippingDetail.hashCode() : 0);
         return result;
     }
 
-    public Long getOrderId() {
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
@@ -71,12 +84,12 @@ public class Order implements Serializable {
         this.cart = cart;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public ShippingDetail getShippingDetail() {

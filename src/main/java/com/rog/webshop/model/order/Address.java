@@ -1,35 +1,27 @@
 package com.rog.webshop.model.order;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+//@Entity
+//@Table(name = "ADDRESS")
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 7901837602811013572L;
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int addressId;
 
-    @Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
-    @Column(name = "PRODUCT_NAME")
     private String doorNo;
 
-    @Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
-    @Column(name = "PRODUCT_NAME")
     private String streetName;
 
-    @Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
-    @Column(name = "PRODUCT_NAME")
     private String areaName;
 
-    @Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
-    @Column(name = "PRODUCT_NAME")
     private String state;
 
-    @Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
-    @Column(name = "PRODUCT_NAME")
     private String country;
 
-    @Size(min = 4, max = 40, message = "{Size.Product.productName.validation}")
-    @Column(name = "PRODUCT_NAME")
     private String zipCode;
 
 

@@ -28,8 +28,15 @@ public class UserServiceImpl implements UserService{
 		return dao.findById(id);
 	}
 
+	public User findByEmail(String email) {
+		return dao.findByEmail(email);
+	}
+
 	public User findBySso(String sso) {
 		return dao.findBySSO(sso);
 	}
-	
+
+	public void update(User user) {
+		dao.update(user);
+	}
 }
