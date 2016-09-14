@@ -1,10 +1,13 @@
 package com.rog.webshop.model.order;
 
 import com.rog.webshop.model.cart.Cart;
+import com.rog.webshop.model.product.Product;
 import com.rog.webshop.model.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -23,6 +26,19 @@ public class Order implements Serializable {
     @ManyToOne(cascade = CascadeType.MERGE)
     private User user;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "ORDER_PRODUCT",
+            joinColumns = {@JoinColumn(name = "ORDER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID")})
+    private List<Product> productList = new ArrayList<Product>();
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
 
     public Order() {
         this.user = new User();

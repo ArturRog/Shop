@@ -40,8 +40,31 @@ public class User implements Serializable
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
+    @Column(name = "PHONE_NUMBER", nullable = false, length = 15)
+    private String phoneNumber;
 
-    ///////////////////////////////////////////////////////
+    @NotEmpty
+    @Size(min = 3, max = 15, message = "{Size.User.firstName.validation}")
+    @Column(name = "FIRST_NAME", nullable = false)
+    private String firstName;
+
+    @NotEmpty
+    @Size(min = 3, max = 15, message = "{Size.User.lastName.validation}")
+    @Column(name = "LAST_NAME", nullable = false)
+    private String lastName;
+
+
+    @NotEmpty
+    @Column(name = "STATE", nullable = false)
+    private String state = State.ACTIVE.getState();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "APP_USER_USER_PROFILE",
+            joinColumns = {@JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "USER_PROFILE_ID")})
+    private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+
+
     @Size(min = 3, max = 50, message = "{Size.User.streetName.validation}")
     @Column(name = "STREET_NAME", length = 50)
     private String streetName;
@@ -109,33 +132,6 @@ public class User implements Serializable
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
-
-///////////////////////////////////////////////////////
-
-
-    @Column(name = "PHONE_NUMBER", nullable = false, length = 15)
-    private String phoneNumber;
-
-    @NotEmpty
-    @Size(min = 3, max = 15, message = "{Size.User.firstName.validation}")
-    @Column(name = "FIRST_NAME", nullable = false)
-    private String firstName;
-
-    @NotEmpty
-    @Size(min = 3, max = 15, message = "{Size.User.lastName.validation}")
-    @Column(name = "LAST_NAME", nullable = false)
-    private String lastName;
-
-
-    @NotEmpty
-    @Column(name = "STATE", nullable = false)
-    private String state = State.ACTIVE.getState();
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "APP_USER_USER_PROFILE",
-            joinColumns = {@JoinColumn(name = "USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "USER_PROFILE_ID")})
-    private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
 
     @Override

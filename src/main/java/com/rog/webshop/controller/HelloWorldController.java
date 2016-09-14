@@ -24,7 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+//// TODO: 14.09.2016 trzeba rozbic jakos ten kontroler na inne
 
+//// TODO: 14.09.2016 walidacja w webflow
 @Controller
 public class HelloWorldController {
 
