@@ -40,7 +40,6 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findByCategory(categoryDao.getByName(category).getId());
     }
 
-    public void removeProduct(int id) {
-        productDao.removeProduct(id);
+    public void removeProduct(Product product) { productDao.removeProduct(product);
     }
 }

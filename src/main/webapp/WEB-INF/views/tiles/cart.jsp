@@ -13,7 +13,8 @@
             <a class="btn btn-danger pull-left"
                ng-click="clearCart()"> <span
                     class="glyphicon glyphicon-remove-sign"></span> Erase Cart
-            </a> <a href="<spring:url value="/checkout?cartId=${cartId}"/>" class="btn btn-success pull-right"> <span
+            </a>
+            <a href="<spring:url value="/checkout?cartId=${cartId}"/>" class="btn btn-success pull-right"> <span
                 class="glyphicon-shopping-cart glyphicon"></span> Confirm
         </a>
         </div>

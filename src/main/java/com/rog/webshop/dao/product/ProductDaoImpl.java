@@ -39,7 +39,11 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
         return (List<Product>) criteria.list();
     }
 
-    public void removeProduct(int id) {
-        delete(id);
+    public void removeProduct(Product product) {
+
+        System.out.println("Jestem w DAO przed usunieciem");
+        delete(product);
+        System.out.println("Jestem w DAO po usunieciu");
+
     }
 }

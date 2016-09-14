@@ -47,15 +47,22 @@ var cartApp = angular.module('cartApp', []);
                     }, function errorCallback(response) {
                     });
 
-                    alert("Product has been succesfully added to cart!");
                 });
         };
         $scope.removeFromCart = function (productId) {
-
-
             $http.put('/rest/cart/remove/' + productId)
                 .success(function (data) {
-                    $scope.refreshCart($http.get('/rest/cart/get/cartId'));
+
+                    $http({
+                        method: 'GET',
+                        url: '/cart/getCartId'
+                    }).then(function successCallback(response) {
+                        $scope.cartId = response.data;
+                        $scope.refreshCart($scope.cartId);
+
+                    }, function errorCallback(response) {
+                    });
+
                 });
         };
     });

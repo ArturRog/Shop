@@ -11,6 +11,6 @@ public interface ProductDao {
     void updateProduct(Product product);
     List<Product> listOfProducts();
     List<Product> findByCategory(Integer category);
-    void removeProduct(int id);
+    void removeProduct(Product product);
 
 }

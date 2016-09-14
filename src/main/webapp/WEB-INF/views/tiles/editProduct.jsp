@@ -4,12 +4,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <form:form method="post" modelAttribute="newProduct" class="form-horizontal"
-           action="${pageContext.request.contextPath}/products/add">
-    <%--enctype="multipart/form-data"--%>
+           action="${pageContext.request.contextPath}/products/edit/${newProduct.id}">
     <form:errors path="*" cssClass="alert alert-danger" element="div"/>
 
     <fieldset>
-        <legend>Add new product</legend>
+        <legend>Edit product</legend>
 
 
         <div class="form-group col-md-12">
@@ -56,10 +55,16 @@
         </div>
 
         <div class="form-group col-md-12">
-            <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" id="btnAdd" class="btn btn-primary" value="Add"/>
+            <div class="col-lg-offset-3 col-lg-10">
+                <input type="submit" id="btnAdd" class="btn btn-primary" value="Edit Product"/>
             </div>
         </div>
-
+        <div class="form-group col-md-12">
+            <div class="col-lg-offset-3 col-lg-10">
+                <a href="<c:url value='/products/remove/${newProduct.id}' />" class="btn btn-danger pull-left"> <span
+                        class="glyphicon glyphicon-remove-sign"></span> Delete Product
+                </a>
+            </div>
+        </div>
     </fieldset>
 </form:form>
