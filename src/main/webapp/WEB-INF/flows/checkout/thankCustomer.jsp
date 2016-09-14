@@ -16,7 +16,6 @@
 			<div class="container">
 				<h1 class="alert alert-danger"> Thank you</h1>
 				<p>Thanks for the order. your order will be delivered to you in a few days!</p>
-				<p>Your Order Number is ${order.orderId}</p>
 			</div>
 		</div>
 	</section>

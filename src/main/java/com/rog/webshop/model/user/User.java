@@ -233,4 +233,25 @@ public class User implements Serializable
     public void setUserProfiles(Set<UserProfile> userProfiles) {
         this.userProfiles = userProfiles;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", ssoId='" + ssoId + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", doorNo='" + doorNo + '\'' +
+                ", areaName='" + areaName + '\'' +
+                ", stateName='" + stateName + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", state='" + state + '\'' +
+                ", userProfiles=" + userProfiles +
+                '}';
+    }
 }

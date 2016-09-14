@@ -30,7 +30,9 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         return (User) crit.uniqueResult();
     }
 
-    public void update(User user) {
+    public void updateUser(User user) {
+        System.out.println("Jestem na poczatku update user");
+
         User newUser = findByEmail(user.getEmail());
         if (newUser == null) {
             throw new CustomerNotFoundException(user.getEmail());
@@ -46,6 +48,8 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         newUser.setCountry(user.getCountry());
         newUser.setZipCode(user.getZipCode());
 
+        System.out.println("Jestem w update user");
+        update(user);
 
     }
 }

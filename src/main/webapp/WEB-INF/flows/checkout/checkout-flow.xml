@@ -11,20 +11,17 @@
                   result="order.cart"/>
         <transition to="InvalidCartWarning"
                     on-exception="com.rog.webshop.exception.InvalidCartException"/>
-        <transition to="collectCustomerInfo"/>
+        <transition to="loadCustomerAddress"/>
     </action-state>
-    
-    <!--<decision-state id="isCustomerExist">-->
-        <!--<if test="customerService.isCustomerExist()"-->
-            <!--then="customerExist"-->
-            <!--else="collectCustomerInfo"/>-->
-    <!--</decision-state>-->
 
-    <!--<action-state id="customerExist">-->
-        <!--<evaluate expression="customerService.getCustomer(currentUser.name)"-->
-                  <!--result="order.customer"/>-->
-        <!--<transition to="collectShippingDetail"/>-->
-    <!--</action-state>-->
+
+    <action-state id="loadCustomerAddress">
+        <evaluate expression="userService.findBySso(currentUser.name)"
+                  result="order.user" />
+        <transition to="collectCustomerInfo"
+                    on-exception="org.springframework.expression.spel.SpelEvaluationException"/>
+        <transition to="collectCustomerInfo" />
+    </action-state>
 
     <view-state id="collectCustomerInfo" model="order">
         <!--<binder>-->
@@ -33,8 +30,13 @@
         <!--<binding property="customer.billingAddress" required="true" />-->
         <!--<binding property="customer.phoneNumber" required="true" />-->
         <!--</binder>-->
-        <transition on="customerInfoCollected" to="orderConfirmation"/>
+        <transition on="customerInfoCollected" to="updateCustomerAddress"/>
     </view-state>
+
+    <action-state id="updateCustomerAddress">
+        <evaluate expression="userService.updateUser(order.user)" />
+        <transition to="orderConfirmation" />
+    </action-state>
 
     <!--<view-state id="collectShippingDetail" model="order">-->
         <!--<transition on="shippingDetailCollected" to="orderConfirmation"/>-->
@@ -47,7 +49,8 @@
     </view-state>
 
     <action-state id="processOrder">
-        <evaluate expression="orderService.saveOrder(order)" result="order.orderId"/>
+        <evaluate expression="orderService.save(order)"/>
+
         <transition to="thankCustomer"/>
     </action-state>
 

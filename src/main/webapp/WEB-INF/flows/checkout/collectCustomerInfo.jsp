@@ -25,10 +25,19 @@
 				<legend>Customer Details</legend>
 				<form:errors path="*" cssClass="alert alert-danger" element="div"/>
 
+
+
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="ssoId" />SSO ID</label>
+					<label class="control-label col-lg-2" for="firstName">First Name</label>
 					<div class="col-lg-10">
-						<form:input id="ssoId" path="ssoId" type="text" class="form:input-large" />
+						<form:input id="firstName" path="firstName" type="text" class="form:input-large" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="lastName">Last Name</label>
+					<div class="col-lg-10">
+						<form:input id="lastName" path="lastName" type="text" class="form:input-large" />
 					</div>
 				</div>
 
@@ -43,20 +52,6 @@
 					<label class="control-label col-lg-2" for="phoneNumber">Phone Number</label>
 					<div class="col-lg-10">
 						<form:input id="phoneNumber" path="phoneNumber" type="text" class="form:input-large" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="firstName">First Name</label>
-					<div class="col-lg-10">
-						<form:input id="firstName" path="firstName" type="text" class="form:input-large" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2" for="lastName">Last Name</label>
-					<div class="col-lg-10">
-						<form:input id="lastName" path="lastName" type="text" class="form:input-large" />
 					</div>
 				</div>
 

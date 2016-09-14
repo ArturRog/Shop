@@ -3,23 +3,24 @@ package com.rog.webshop.model.order;
 import com.rog.webshop.model.cart.Cart;
 import com.rog.webshop.model.user.User;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 
-
-//@Entity
-//@Table(name = "ORDER")
+@Entity
+@Table(name = "ORDERS")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -167040897500768764L;
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
 
+    @Transient
     private Cart cart;
 
-//    @OneToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private User user;
 
 

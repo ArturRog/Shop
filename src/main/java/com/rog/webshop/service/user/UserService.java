@@ -12,6 +12,6 @@ public interface UserService {
 	User findBySso(String sso);
 
 	User findByEmail(String email);
-	void update(User user);
+	void updateUser(User user);
 
 }

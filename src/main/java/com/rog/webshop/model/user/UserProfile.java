@@ -1,11 +1,14 @@
 package com.rog.webshop.model.user;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="USER_PROFILE")
-public class UserProfile {
+public class UserProfile implements Serializable {
 
+
+	private static final long serialVersionUID = -2715555743979245933L;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;	
 

@@ -33,10 +33,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public User findBySso(String sso) {
+		System.out.println("Im in userService in findyBySso method sso: " + sso);
 		return dao.findBySSO(sso);
 	}
 
-	public void update(User user) {
-		dao.update(user);
+	public void updateUser(User user) {
+		System.out.println("Im in userService in updateUser method user: " + user);
+		dao.updateUser(user);
 	}
 }
