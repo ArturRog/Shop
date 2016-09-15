@@ -11,4 +11,5 @@ public interface OrderDao {
     Order findById(int orderId);
 
     List<Order> listOfOrders();
+    List<Order> findByUser(Integer userId);
 }

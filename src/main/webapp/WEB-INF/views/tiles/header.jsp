@@ -23,30 +23,32 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
+            <%--<ul class="nav navbar-nav">--%>
 
-            </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Find product">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
+            <%--</ul>--%>
+            <%--<form class="navbar-form navbar-left">--%>
+            <%--<div class="form-group">--%>
+            <%--<input type="text" class="form-control" placeholder="Find product">--%>
+            <%--</div>--%>
+            <%--<button type="submit" class="btn btn-default">Search</button>--%>
+            <%--</form>--%>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="<c:url value='/cart'/>">Cart <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                 <sec:authorize access="!isAuthenticated()">
-                    <li><a href="<c:url value='/login'/>">Log in</a></li>
-                    <li><a href="<c:url value='/newUser'/>">Register</a></li>
+                    <li class="active"><a href="<c:url value='/login'/>">Log in</a></li>
+                    <li class="active"><a href="<c:url value='/newUser'/>">Register</a></li>
 
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
+                    <li class="active"><a href="<c:url value='/cart'/>">Cart <span
+                            class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li class="active"><a href="<c:url value='/myOrders'/>">My Orders <span class="sr-only">(current)</span></a>
+                    </li>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <li><a href="<c:url value='/admin'/>">Admin Page</a></li>
+                        <li class="active"><a href="<c:url value='/admin'/>">Admin Page</a></li>
                     </sec:authorize>
-                    <li><a class="login" href="<c:url value='/logout'/>">Log out</a></li>
+
+                    <li class="active"><a class="login" href="<c:url value='/logout'/>">Log out</a></li>
                 </sec:authorize>
 
 

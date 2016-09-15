@@ -41,6 +41,10 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.findById(orderId);
     }
 
+    public List<Order> findByUser(Integer userId) {
+        return orderDao.findByUser(userId);
+    }
+
     public List<Order> listOfOrders() {
         return orderDao.listOfOrders();
     }

@@ -1,8 +1,10 @@
 package com.rog.webshop.controller;
 
 
+import com.rog.webshop.model.order.Order;
 import com.rog.webshop.model.user.User;
 import com.rog.webshop.model.user.UserProfile;
+import com.rog.webshop.service.order.OrderService;
 import com.rog.webshop.service.user.UserProfileService;
 import com.rog.webshop.service.user.UserService;
 import com.rog.webshop.validator.ValidateOnCreationOnly;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,122 +33,139 @@ import java.util.Set;
 @Controller
 public class HelloWorldController {
 
-	@Autowired
-	UserProfileService userProfileService;
-	
-	@Autowired
-	UserService userService;
-	
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
-	public String homePage(ModelMap model) {
-		model.addAttribute("greeting", "Hi, Welcome to mysite");
-		return "welcome";
-	}
+    @Autowired
+    UserProfileService userProfileService;
 
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "admin";
-	}
+    @Autowired
+    UserService userService;
 
-	@RequestMapping(value = "/db", method = RequestMethod.GET)
-	public String dbaPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "dba";
-	}
+    @Autowired
+    private OrderService orderService;
 
-	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
-	public String accessDeniedPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "accessDenied";
-	}
+    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
+    public String homePage(ModelMap model) {
+        model.addAttribute("greeting", "Hi, Welcome to mysite");
+        return "welcome";
+    }
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginPage() {
-		return "login";
-	}
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "admin";
+    }
+
+    @RequestMapping(value = "/myOrders", method = RequestMethod.GET)
+    public String recentOrders(ModelMap model) {
+
+        User user = userService.findBySso(getPrincipal());
+        if (user == null) {
+            throw new UsernameNotFoundException(getPrincipal());
+        }
+
+        List<Order> orders = orderService.findByUser(user.getId());
+
+        if (orders.isEmpty()) {
+//            model.addAttribute("orders", "You haven't ordered any products yet.");
+        }
+        model.addAttribute("orders", orders);
+
+        return "myOrders";
+    }
+
+    @RequestMapping(value = "/db", method = RequestMethod.GET)
+    public String dbaPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "dba";
+    }
+
+    @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+    public String accessDeniedPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "accessDenied";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage() {
+        return "login";
+    }
 
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
+    }
 
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null){    
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		return "redirect:/login?logout";
-	}
 
-	
-	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
-	public String newRegistration(ModelMap model) {
-		User user = new User();
-		model.addAttribute("user", user);
+    @RequestMapping(value = "/newUser", method = RequestMethod.GET)
+    public String newRegistration(ModelMap model) {
+        User user = new User();
+        model.addAttribute("user", user);
 
-		return "newuser";
-	}
+        return "newuser";
+    }
 
-	/*
-	 * This method will be called on form submission, handling POST request It
-	 * also validates the user input
-	 */
-	@RequestMapping(value = "/createaccount", method = RequestMethod.POST)
-	public String saveRegistration(@Validated(ValidateOnCreationOnly.class) User user,
+    /*
+     * This method will be called on form submission, handling POST request It
+     * also validates the user input
+     */
+    @RequestMapping(value = "/createaccount", method = RequestMethod.POST)
+    public String saveRegistration(@Validated(ValidateOnCreationOnly.class) User user,
                                    BindingResult result, ModelMap model) {
 
 
-		if (result.hasErrors()) {
-			System.out.println("There are errors");
-			return "newuser";
-		}
+        if (result.hasErrors()) {
+            System.out.println("There are errors");
+            return "newuser";
+        }
 
 
-		System.out	.println("First Name : "+user.getFirstName());
-		System.out.println("Last Name : "+user.getLastName());
-		System.out.println("SSO ID : "+user.getSsoId());
-		System.out.println("Password : "+user.getPassword());
-		System.out.println("Email : "+user.getEmail());
-		System.out.println("Checking UsrProfiles....");
+        System.out.println("First Name : " + user.getFirstName());
+        System.out.println("Last Name : " + user.getLastName());
+        System.out.println("SSO ID : " + user.getSsoId());
+        System.out.println("Password : " + user.getPassword());
+        System.out.println("Email : " + user.getEmail());
+        System.out.println("Checking UsrProfiles....");
 
-		if (user.getUserProfiles().isEmpty()){
-			Set<UserProfile> userProfiles = new HashSet<UserProfile>();
-			userProfiles.add(userProfileService.findById(1));
-			user.setUserProfiles(userProfiles);
-			System.out.println(user.getUserProfiles());
-		}
+        if (user.getUserProfiles().isEmpty()) {
+            Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+            userProfiles.add(userProfileService.findById(1));
+            user.setUserProfiles(userProfiles);
+            System.out.println(user.getUserProfiles());
+        }
 
-		if(user.getUserProfiles()!=null){
-			for(UserProfile profile : user.getUserProfiles()){
-				System.out.println("Profile : "+ profile.getType());
-			}
-		}
-			userService.save(user);
+        if (user.getUserProfiles() != null) {
+            for (UserProfile profile : user.getUserProfiles()) {
+                System.out.println("Profile : " + profile.getType());
+            }
+        }
+        userService.save(user);
 
-		model.addAttribute("success", "User " + user.getFirstName() + " has been registered successfully");
+        model.addAttribute("success", "User " + user.getFirstName() + " has been registered successfully");
 
-		return "registrationsuccess";
-	}
+        return "registrationsuccess";
+    }
 
 
-	
-	
-	private String getPrincipal(){
-		String userName = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (principal instanceof UserDetails) {
-			userName = ((UserDetails)principal).getUsername();
-		} else {
-			userName = principal.toString();
-		}
-		return userName;
-	}
-	
-	
-	
-	@ModelAttribute("roles")
-	public List<UserProfile> initializeProfiles() {
-		return userProfileService.findAll();
-	}
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
+
+
+    @ModelAttribute("roles")
+    public List<UserProfile> initializeProfiles() {
+        return userProfileService.findAll();
+    }
 
 }

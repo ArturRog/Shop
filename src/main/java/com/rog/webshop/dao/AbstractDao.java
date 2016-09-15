@@ -43,6 +43,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 		getSession().merge(entity);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> findAll()
 	{
 		return getSession().createQuery("Select t from " + persistentClass.getSimpleName() + " t").list();

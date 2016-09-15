@@ -40,10 +40,6 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
     }
 
     public void removeProduct(Product product) {
-
-        System.out.println("Jestem w DAO przed usunieciem");
         delete(product);
-        System.out.println("Jestem w DAO po usunieciu");
-
     }
 }

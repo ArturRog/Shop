@@ -31,7 +31,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
     }
 
     public void updateUser(User user) {
-        System.out.println("Jestem na poczatku update user");
 
         User newUser = findByEmail(user.getEmail());
         if (newUser == null) {
@@ -48,7 +47,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         newUser.setCountry(user.getCountry());
         newUser.setZipCode(user.getZipCode());
 
-        System.out.println("Jestem w update user");
         update(user);
 
     }

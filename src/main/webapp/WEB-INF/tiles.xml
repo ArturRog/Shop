@@ -85,6 +85,11 @@
         <put-attribute name="body" value="/WEB-INF/views/tiles/editProduct.jsp"></put-attribute>
     </definition>
 
+    <definition name="myOrders" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/myOrders.jsp"></put-attribute>
+    </definition>
+
     <!--<definition name="checkOutCancelled" extends="shop.base">-->
         <!--<put-attribute name="title" value="Shop homepage"></put-attribute>-->
         <!--<put-attribute name="body" value="/WEB-INF/flows/checkout/checkOutCancelled.jsp"></put-attribute>-->

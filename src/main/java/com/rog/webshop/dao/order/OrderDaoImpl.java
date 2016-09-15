@@ -2,21 +2,24 @@ package com.rog.webshop.dao.order;
 
 import com.rog.webshop.dao.AbstractDao;
 import com.rog.webshop.model.order.Order;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository("orderDao")
 public class OrderDaoImpl extends AbstractDao<Integer,Order> implements OrderDao {
+
     public void save(Order order) {
         persist(order);
     }
+
     private int getOrderId(){
         List<Order> orders = findAll();
         int highestId = 0;
         for (Order order : orders) {
-            highestId = order.getOrderId();
-            System.out.println("Co tu sie " + highestId);
+            highestId = order.getId();
         }
         return highestId;
     }
@@ -29,23 +32,14 @@ public class OrderDaoImpl extends AbstractDao<Integer,Order> implements OrderDao
         return findAll();
     }
 
-//
-//    private Map<Integer,Order> listOfOrders;
-//    private int nextOrderId;
-//
-//    public OrderDaoImpl() {
-//        this.listOfOrders = new HashMap<Integer, Order>();
-//        this.nextOrderId = 1000;
-//    }
-//
-//    public int saveOrder(Order order) {
-//        order.setOrderId(getNextOrderId());
-//        listOfOrders.put(order.getOrderId(), order);
-//        return order.getOrderId();
-//
-//    }
-//
-//    private synchronized int getNextOrderId(){
-//        return nextOrderId++;
-//    }
+
+    //// TODO: 15.09.2016 NIE DZIALA :(
+    @SuppressWarnings("unchecked")
+    public List<Order> findByUser(Integer userId){
+        Criteria criteria = createEntityCriteria();
+        criteria.add(Restrictions.eq("user.id", userId));
+        return (List<Order>) criteria.list();
+    }
+
+
 }

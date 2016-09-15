@@ -33,8 +33,6 @@ public class ProductController {
     @RequestMapping
     public String showProducts(ModelMap model, @RequestParam(value = "category", required = false) String nameOrNull) {
 
-
-        System.out.println(nameOrNull);
         if (nameOrNull != null) {
             if (productService.findByCategory(nameOrNull).isEmpty()) {
                 throw new NoProductsFoundUnderCategoryException();

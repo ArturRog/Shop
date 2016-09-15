@@ -18,13 +18,14 @@ public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int orderId;
+    private int id;
 
     @Transient
     private Cart cart;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private User user;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ORDER_PRODUCT",
@@ -47,9 +48,10 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "orderId=" + orderId +
+                "id=" + id +
                 ", cart=" + cart +
                 ", user=" + user +
+                ", productList=" + productList +
                 '}';
     }
 
@@ -60,7 +62,7 @@ public class Order implements Serializable {
 
         Order order = (Order) o;
 
-        if (orderId != order.orderId) return false;
+        if (id != order.id) return false;
         if (cart != null ? !cart.equals(order.cart) : order.cart != null) return false;
         return user != null ? user.equals(order.user) : order.user == null;
 
@@ -68,7 +70,7 @@ public class Order implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = orderId;
+        int result = id;
         result = 31 * result + (cart != null ? cart.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
@@ -78,12 +80,12 @@ public class Order implements Serializable {
         return serialVersionUID;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getId() {
+        return id;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Cart getCart() {
