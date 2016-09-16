@@ -16,6 +16,7 @@
             /WEB-INF/spring/applicationContext.xml
             /WEB-INF/spring/spring-database.xml
             /WEB-INF/spring/spring-security.xml
+            /WEB-INF/spring/spring-mail.xml
         </param-value>
     </context-param>
 

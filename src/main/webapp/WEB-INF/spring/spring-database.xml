@@ -12,8 +12,11 @@
                             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd ">
   
     <context:component-scan base-package="com.rog.webshop.dao" />
-    
-	<context:property-placeholder location="classpath:application.properties" />
+
+	<context:property-placeholder
+			location="classpath:application.properties,
+          classpath:mail.properties"
+			ignore-unresolvable="true"/>
 	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

@@ -50,7 +50,11 @@
 
     <action-state id="processOrder">
         <evaluate expression="orderService.save(order)"/>
+        <transition to="sendConfirmationEmail"/>
+    </action-state>
 
+    <action-state id="sendConfirmationEmail">
+        <evaluate expression="mailService.sendConfirmationEmail(order)"/>
         <transition to="thankCustomer"/>
     </action-state>
 

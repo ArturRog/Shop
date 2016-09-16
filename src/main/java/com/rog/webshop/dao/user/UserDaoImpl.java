@@ -32,7 +32,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
     public void updateUser(User user) {
 
-        User newUser = findByEmail(user.getEmail());
+        User newUser = findBySSO(user.getSsoId());
         if (newUser == null) {
             throw new CustomerNotFoundException(user.getEmail());
         }
