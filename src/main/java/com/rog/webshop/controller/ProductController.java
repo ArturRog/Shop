@@ -64,10 +64,6 @@ public class ProductController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct, BindingResult result) {
 
-        System.out.println("Product name: " + newProduct.getProductName());
-        System.out.println("Product price: " + newProduct.getProductPrice());
-        System.out.println("Product description: " + newProduct.getProductDescription());
-        System.out.println("Product category: " + newProduct.getCategory());
 
         if (result.hasErrors()) {
             System.out.println("There are errors" + result.getAllErrors());

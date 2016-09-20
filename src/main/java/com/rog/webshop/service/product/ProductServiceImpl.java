@@ -20,7 +20,6 @@ public class ProductServiceImpl implements ProductService {
     private CategoryDao categoryDao;
 
     public Product findById(int id) {
-        System.out.println("I'm in findById method in Product service. product id: " + id + " product" + productDao.findById(id).getCategory().getCategoryName());
         return productDao.findById(id);
     }
 

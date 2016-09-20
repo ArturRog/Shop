@@ -27,7 +27,6 @@ public class OrderServiceImpl implements OrderService {
 
         List<Product> products = new ArrayList<Product>();
         for (Item item : order.getCart().getProducts().values()) {
-            System.out.println("Produkt = " + item.getProduct());
             products.add(item.getProduct());
         }
 

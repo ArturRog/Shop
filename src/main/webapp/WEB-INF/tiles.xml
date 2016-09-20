@@ -12,7 +12,7 @@
         <put-attribute name="includes" value=""></put-attribute>
         <put-attribute name="title" value="WebShop"></put-attribute>
         <put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/tiles/welcome.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/products.jsp"></put-attribute>
         <put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"></put-attribute>
         <put-attribute name="menu" value="/WEB-INF/views/tiles/menu.jsp"></put-attribute>
     </definition>
@@ -20,7 +20,7 @@
 
     <definition name="welcome" extends="shop.base">
         <put-attribute name="title" value="Shop homepage"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/tiles/welcome.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/products.jsp"></put-attribute>
     </definition>
 
 

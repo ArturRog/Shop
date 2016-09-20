@@ -25,10 +25,6 @@ public class CartRestController {
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody Cart read(@PathVariable(value = "cartId") String cartId) {
-        System.out.println("I'm in read method in /rest/cart controller. CartId: " + cartId);
-        for (Item item : cartService.read(cartId).getProducts().values()) {
-            System.out.println(item.getProduct().getProductName());
-        }
         return cartService.read(cartId);
     }
 
@@ -43,8 +39,6 @@ public class CartRestController {
     public
     @ResponseBody
     Cart create(@RequestBody Cart cart) {
-        System.out.println("I'm in create method in /rest/cart controller. CartId: " + cart.getCartId());
-
         return cartService.create(cart);
     }
 
@@ -52,18 +46,12 @@ public class CartRestController {
     @RequestMapping(value = "/{cartId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@PathVariable(value = "cartId") String cartId, @RequestBody Cart cart) {
-        System.out.println("I'm in update method in /rest/cart controller. CartId: " + cartId + " new cart : " + cart.getCartId());
-
-
         cartService.update(cart, cartId);
     }
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "cartId") String cartId) {
-        System.out.println("I'm in delete method in /rest/cart controller. CartId: " + cartId);
-
-
         cartService.delete(cartId);
     }
 
@@ -71,8 +59,6 @@ public class CartRestController {
     @RequestMapping(value = "/add/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addItem(@PathVariable Integer productId, HttpServletRequest request) {
-        System.out.println("I'm in addItem method in /rest/cart controller. productId: " + productId);
-
         String sessionId = request.getSession().getId();
         Cart cart = cartService.read(sessionId);
         if (cart == null) {
@@ -84,17 +70,11 @@ public class CartRestController {
         }
         cart.addItemToCart(new Item(product));
         cartService.update(cart, sessionId);
-        System.out.println("I'm in addItem method in /rest/cart controller. cart values: ");
-        for (Item item : cart.getProducts().values()) {
-            System.out.println(item);
-        }
     }
 
     @RequestMapping(value = "/remove/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void removeItem(@PathVariable Integer productId, HttpServletRequest request) {
-        System.out.println("I'm in removeItem method in /rest/cart controller. productId: " + productId);
-
         String sessionId = request.getSession().getId();
         Cart cart = cartService.read(sessionId);
         if (cart == null) {

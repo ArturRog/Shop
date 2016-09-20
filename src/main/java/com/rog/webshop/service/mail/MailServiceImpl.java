@@ -30,7 +30,7 @@ public class MailServiceImpl implements  MailService
         {
             public void prepare(MimeMessage mimeMessage) throws Exception {
 
-                MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+                MimeMessageHelper message = new MimeMessageHelper(mimeMessage,false);
 
                 message.setTo(order.getUser().getEmail());
                 message.setSubject("Your order has been dispatched.");

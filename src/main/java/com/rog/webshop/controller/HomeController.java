@@ -27,11 +27,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-//// TODO: 14.09.2016 trzeba rozbic jakos ten kontroler na inne
 
 //// TODO: 14.09.2016 walidacja w webflow
 @Controller
-public class HelloWorldController {
+public class HomeController {
 
     @Autowired
     UserProfileService userProfileService;
@@ -43,9 +42,8 @@ public class HelloWorldController {
     private OrderService orderService;
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String homePage(ModelMap model) {
-        model.addAttribute("greeting", "Hi, Welcome to mysite");
-        return "welcome";
+    public String homePage() {
+        return "redirect:/products";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -116,32 +114,18 @@ public class HelloWorldController {
     public String saveRegistration(@Validated(ValidateOnCreationOnly.class) User user,
                                    BindingResult result, ModelMap model) {
 
-
         if (result.hasErrors()) {
             System.out.println("There are errors");
             return "newuser";
         }
 
-
-        System.out.println("First Name : " + user.getFirstName());
-        System.out.println("Last Name : " + user.getLastName());
-        System.out.println("SSO ID : " + user.getSsoId());
-        System.out.println("Password : " + user.getPassword());
-        System.out.println("Email : " + user.getEmail());
-        System.out.println("Checking UsrProfiles....");
-
         if (user.getUserProfiles().isEmpty()) {
             Set<UserProfile> userProfiles = new HashSet<UserProfile>();
             userProfiles.add(userProfileService.findById(1));
             user.setUserProfiles(userProfiles);
-            System.out.println(user.getUserProfiles());
         }
 
-        if (user.getUserProfiles() != null) {
-            for (UserProfile profile : user.getUserProfiles()) {
-                System.out.println("Profile : " + profile.getType());
-            }
-        }
+
         userService.save(user);
 
         model.addAttribute("success", "User " + user.getFirstName() + " has been registered successfully");

@@ -35,7 +35,6 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
     public List<Product> findByCategory(Integer category) {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("category.id", category));
-        //TODO still doesent work. Dont know the reason.
         return (List<Product>) criteria.list();
     }
 

@@ -18,7 +18,6 @@ public class CartDaoImpl implements CartDao {
     }
 
     public Cart create(Cart cart) {
-        System.out.println("I'm in create method in Cart DAO. cart: " + cart.getCartId());
 
         if (listOfCarts.containsKey(cart.getCartId())) {
             throw new IllegalArgumentException(String.format("Can not create cart"
@@ -29,13 +28,11 @@ public class CartDaoImpl implements CartDao {
     }
 
     public Cart read(String cartId) {
-        System.out.println("I'm in read method in Cart DAO. cartId: " + cartId);
         return listOfCarts.get(cartId);
     }
 
 
     public void update(Cart cart, String cartId) {
-        System.out.println("I'm in update method in Cart DAO. cart: " + cart.getCartId() + " cartID" + cartId);
 
         if (!listOfCarts.containsKey(cartId)) {
             throw new IllegalArgumentException(String.format("Can not update cart. "
@@ -45,7 +42,6 @@ public class CartDaoImpl implements CartDao {
     }
 
     public void delete(String cartId) {
-        System.out.println("I'm in create method in Cart DAO. cartId: " + cartId);
 
         if (!listOfCarts.containsKey(cartId)) {
             throw new IllegalArgumentException(String.format("Can not update cart. "

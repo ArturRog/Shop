@@ -5,6 +5,7 @@ import com.rog.webshop.model.product.Product;
 import com.rog.webshop.model.user.User;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Order implements Serializable {
     @Transient
     private Cart cart;
 
+    @Valid
     @ManyToOne(cascade = CascadeType.MERGE)
     private User user;
 

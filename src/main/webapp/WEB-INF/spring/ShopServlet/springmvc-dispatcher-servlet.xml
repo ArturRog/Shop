@@ -32,24 +32,6 @@
         <property name="order" value="-2"/>
     </bean>
 
-    <!--<bean id="tilesViewResolver"-->
-          <!--class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">-->
-    <!--</bean>-->
-
-
-
-
-
-
-
-
-
-
-
-
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-        <property name="validationMessageSource" ref="messageSource"/>
-    </bean>
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages"/>
@@ -71,60 +53,33 @@
     </bean>
 
 
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+
+
     <!--WEBFLOW CONFIG-->
     <webflow-config:flow-executor id="flowExecutor"
-    flow-registry="flowRegistry"/>
-    <!--<webflow-config:flow-builder-services id="flowBuilderServices"-->
-    <!--validator="validator"-->
-    <!--view-factory-creator="mvcViewFactoryCreator"/>-->
+                                  flow-registry="flowRegistry"/>
+    <webflow-config:flow-builder-services id="flowBuilderServices" validator="validator"/>
     <webflow-config:flow-registry id="flowRegistry"
-    base-path="WEB-INF/flows">
-    <!--flow-builder-services="flowBuilderServices">-->
-    <webflow-config:flow-location path="/checkout/checkout-flow.xml"
-    id="checkout"/>
+                                  base-path="WEB-INF/flows">
+        <webflow-config:flow-location path="/checkout/checkout-flow.xml"
+                                      id="checkout"/>
     </webflow-config:flow-registry>
 
 
     <!-- Configures Web Flow to use Tiles to create views for rendering; Tiles allows for applying consistent layouts to your views -->
     <bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
-    <property name="viewResolvers" ref="tilesViewResolver" />
+        <property name="viewResolvers" ref="tilesViewResolver"/>
     </bean>
     <bean id="flowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-    <property name="flowRegistry" ref="flowRegistry"/>
-    <property name="order" value="-1"/>
+        <property name="flowRegistry" ref="flowRegistry"/>
+        <property name="order" value="-1"/>
     </bean>
     <bean id="flowHandlerAdapter" class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
-    <property name="flowExecutor" ref="flowExecutor"/>
+        <property name="flowExecutor" ref="flowExecutor"/>
     </bean>
-
-
-    <!--<webflow-config:flow-registry id="flowRegistry"-->
-                                  <!--base-path="WEB-INF/flows"-->
-                                  <!--flow-builder-services="flowBuilderServices">-->
-        <!--<webflow-config:flow-location path="checkout/checkout-flow.xml" id="checkout"/>-->
-    <!--</webflow-config:flow-registry>-->
-
-    <!--<webflow-config:flow-executor id="flowExecutor" flow-registry="flowRegistry">-->
-    <!--</webflow-config:flow-executor>-->
-
-    <!--<bean id="flowHandlerAdapter" class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">-->
-        <!--<property name="flowExecutor" ref="flowExecutor"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="flowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">-->
-        <!--<property name="flowRegistry" ref="flowRegistry"/>-->
-        <!--<property name="order" value="0"/>-->
-    <!--</bean>-->
-
-    <!--<webflow-config:flow-builder-services id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator"/>-->
-    <!--<bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">-->
-        <!--<property name="viewResolvers" ref="tilesViewResolver"/>-->
-    <!--</bean>-->
-
-
-
-
-
 
 
     <!-- Configure to plugin JSON as request and response in method handler -->
@@ -142,9 +97,6 @@
     <bean id="marshallingHttpMessageConverter"
           class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
     </bean>
-
-
-
 
 
 </beans>

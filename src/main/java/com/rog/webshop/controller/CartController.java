@@ -18,25 +18,18 @@ import javax.servlet.http.HttpServletRequest;
         public
         @ResponseBody
         String getCartId(HttpServletRequest request) {
-            System.out.println("I'm in getCartId method in /rest/cart controller. Session id: " + request.getSession(true).getId());
-
             return request.getSession().getId();
         }
 
 
         @RequestMapping(value = "/{cartId}", method = RequestMethod.GET)
         public String getCart(@PathVariable(value = "cartId") String cartId , ModelMap model){
-            System.out.println("I'm in getCart method in /cart controller. CartId: " + cartId);
-
             model.addAttribute("cartId", cartId);
             return "cart";
         }
 
         @RequestMapping
         public String get(HttpServletRequest request){
-            System.out.println("I'm in get method in /cart controller. Session id: " + request.getSession(true).getId() );
-
-
             return "redirect:/cart/" + request.getSession(true).getId();
         }
 

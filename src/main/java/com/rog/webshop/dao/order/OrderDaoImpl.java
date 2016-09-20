@@ -33,7 +33,6 @@ public class OrderDaoImpl extends AbstractDao<Integer,Order> implements OrderDao
     }
 
 
-    //// TODO: 15.09.2016 NIE DZIALA :(
     @SuppressWarnings("unchecked")
     public List<Order> findByUser(Integer userId){
         Criteria criteria = createEntityCriteria();

@@ -7,6 +7,7 @@
     <var name="order" class="com.rog.webshop.model.order.Order"/>
 
     <action-state id="addCartToOrder">
+        <secured attributes="ROLE_USER"/>
         <evaluate expression="cartService.validate(requestParameters.cartId)"
                   result="order.cart"/>
         <transition to="InvalidCartWarning"
@@ -24,12 +25,18 @@
     </action-state>
 
     <view-state id="collectCustomerInfo" model="order">
-        <!--<binder>-->
-        <!--<binding property="customer.customerId" required="true"  />-->
-        <!--<binding property="customer.name" required="true" />-->
-        <!--<binding property="customer.billingAddress" required="true" />-->
-        <!--<binding property="customer.phoneNumber" required="true" />-->
-        <!--</binder>-->
+        <binder>
+        <binding property="user.firstName" required="true"  />
+        <binding property="user.lastName" required="true"  />
+        <binding property="user.email" required="true"  />
+        <binding property="user.phoneNumber" required="true"  />
+        <binding property="user.doorNo" required="true"  />
+        <binding property="user.streetName" required="true"  />
+        <binding property="user.areaName" required="true"  />
+        <binding property="user.stateName" required="true"  />
+        <binding property="user.country" required="true"  />
+        <binding property="user.zipCode" required="true"  />
+        </binder>
         <transition on="customerInfoCollected" to="updateCustomerAddress"/>
     </view-state>
 
@@ -38,10 +45,6 @@
         <transition to="orderConfirmation" />
     </action-state>
 
-    <!--<view-state id="collectShippingDetail" model="order">-->
-        <!--<transition on="shippingDetailCollected" to="orderConfirmation"/>-->
-        <!--<transition on="backToCollectCustomerInfo" to="collectCustomerInfo"/>-->
-    <!--</view-state>-->
 
     <view-state id="orderConfirmation" view="orderConfirmation.jsp">
         <transition on="orderConfirmed" to="processOrder"/>
