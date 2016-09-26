@@ -7,7 +7,7 @@
 
 <div class="form-container">
 
-    <h1>New User Registration Form</h1>
+    <legend class="col-lg-offset-3 col-lg-9">New User Registration Form</legend>
 
     <form:form method="POST" modelAttribute="user" class="form-horizontal"
                action="${pageContext.request.contextPath}/createaccount">

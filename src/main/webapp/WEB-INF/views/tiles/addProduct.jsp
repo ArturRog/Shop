@@ -8,14 +8,15 @@
     <%--enctype="multipart/form-data"--%>
     <form:errors path="*" cssClass="alert alert-danger" element="div"/>
 
-        <legend>Add new product</legend>
+    <fieldset>
+        <legend class="col-lg-offset-3 col-lg-9">Add new product</legend>
 
         <div class="form-group col-md-12">
             <label class="control-label col-md-3" for="productName">
                 <spring:message code="addProduct.form.productName.label"/>
             </label>
             <div class="col-md-7">
-                <form:input id="productName" path="productName" type="text" class="form:input-large"/>
+                <form:input id="productName" path="productName" type="text" class="form-control input-sm"/>
                 <form:errors path="productName" cssClass="text-danger"/>
             </div>
         </div>
@@ -26,7 +27,7 @@
             </label>
             <div class="col-md-7">
                 <div class="form:input-prepend">
-                    <form:input id="productPrice" path="productPrice" type="text" class="form:input-large"/>
+                    <form:input id="productPrice" path="productPrice" type="text" class="form-control input-sm"/>
                     <form:errors path="productPrice" cssClass="text-danger"/>
                 </div>
             </div>
@@ -48,7 +49,7 @@
                 <spring:message code="addProduct.form.productDescription.label"/>
             </label>
             <div class="col-md-7">
-                <form:textarea id="productDescription" path="productDescription" rows="2"/>
+                <form:textarea id="productDescription" path="productDescription" rows="4" cssStyle="width: 100%"/>
                 <form:errors path="productDescription" cssClass="text-danger"/>
             </div>
         </div>
@@ -59,4 +60,5 @@
             </div>
         </div>
 
+    </fieldset>
 </form:form>
