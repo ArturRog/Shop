@@ -11,7 +11,7 @@
 
     <form:form method="POST" modelAttribute="user" class="form-horizontal"
                action="${pageContext.request.contextPath}/createaccount">
-
+        <form:errors path="*" cssClass="alert alert-danger col-lg-offset-3 col-lg-9" element="div"/>
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-label" for="firstName">
@@ -108,12 +108,11 @@
         </sec:authorize>
 
         <sec:authorize access="!isAuthenticated()">
-            <hr class="colorgraph">
             <div class="row">
-                <div class="col-xs-4 col-md-2"><input type="submit" value="Register"
-                                                      class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                <div class="col-xs-4 col-md-2"><a href="<c:url value='/login' />"
-                                                  class="btn btn-success btn-block btn-lg">Sign In</a></div>
+                <div class="col-lg-offset-3 col-lg-9"><input type="submit" value="Register"
+                                                      class="btn btn-primary btn-sm" tabindex="7">
+                    <a href="<c:url value='/login' />"
+                       class="btn btn-success btn-sm">Sign In</a></div>
             </div>
         </sec:authorize>
     </form:form>

@@ -24,27 +24,22 @@ public class User implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty
     @UserSsoId(groups = ValidateOnCreationOnly.class)
     @Size(min = 3, max = 15, message = "{Size.User.ssoId.validation}")
     @Column(name = "SSO_ID", unique = true, nullable = false)
     private String ssoId;
-    @NotEmpty
     @Email
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
-//    @NotEmpty
-//    @Size(min = 6, max = 15, message = "{Size.User.password.validation}")
+    @Size(min = 6, max = 15, message = "{Size.User.password.validation}")
     @Column(name = "PASSWORD", nullable = false)
     private String password;
     @Column(name = "PHONE_NUMBER", nullable = false, length = 15)
     private String phoneNumber;
-    @NotEmpty
     @Size(min = 3, max = 15, message = "{Size.User.firstName.validation}")
     @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
-    @NotEmpty
     @Size(min = 3, max = 15, message = "{Size.User.lastName.validation}")
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
