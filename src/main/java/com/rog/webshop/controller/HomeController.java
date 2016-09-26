@@ -74,7 +74,7 @@ public class HomeController {
 
         model.addAttribute("orders", orders);
 
-        return isAdmin()? "adminOrders" : "myOrders";
+        return "myOrders";
     }
 
     @RequestMapping(value = "/db", method = RequestMethod.GET)
@@ -110,8 +110,6 @@ public class HomeController {
         User user = new User();
         model.addAttribute("user", user);
 
-        if (isAdmin()) return "admin-newUser";
-
         return "newuser";
     }
 
@@ -139,7 +137,6 @@ public class HomeController {
 
         model.addAttribute("success", "User " + user.getFirstName() + " has been registered successfully");
 
-        if (isAdmin()) return "admin-registrationsuccess";
 
         return "registrationsuccess";
     }

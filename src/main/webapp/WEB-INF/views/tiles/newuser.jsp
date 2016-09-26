@@ -98,9 +98,9 @@
                     </div>
                 </div>
             </div>
-
+            <br>
             <div class="row">
-                <div class="form-actions floatRight">
+                <div class="col-lg-offset-3 col-lg-9">
                     <input type="submit" value="Register" class="btn btn-primary btn-sm"> or <a
                         href="<c:url value='/admin' />">Cancel</a>
                 </div>
@@ -111,8 +111,9 @@
             <hr class="colorgraph">
             <div class="row">
                 <div class="col-xs-4 col-md-2"><input type="submit" value="Register"
-                                                       class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                <div class="col-xs-4 col-md-2"><a href="<c:url value='/login' />" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+                                                      class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+                <div class="col-xs-4 col-md-2"><a href="<c:url value='/login' />"
+                                                  class="btn btn-success btn-block btn-lg">Sign In</a></div>
             </div>
         </sec:authorize>
     </form:form>

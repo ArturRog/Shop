@@ -8,9 +8,7 @@
     <%--enctype="multipart/form-data"--%>
     <form:errors path="*" cssClass="alert alert-danger" element="div"/>
 
-    <fieldset>
         <legend>Add new product</legend>
-
 
         <div class="form-group col-md-12">
             <label class="control-label col-md-3" for="productName">
@@ -56,10 +54,9 @@
         </div>
 
         <div class="form-group col-md-12">
-            <div class="col-lg-offset-2 col-lg-10">
+            <div class="col-lg-offset-3 col-lg-9">
                 <input type="submit" id="btnAdd" class="btn btn-primary" value="Add"/>
             </div>
         </div>
 
-    </fieldset>
 </form:form>

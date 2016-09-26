@@ -29,29 +29,23 @@
         <put-attribute name="body" value="/WEB-INF/views/tiles/login.jsp"></put-attribute>
     </definition>
 
-    <definition name="admin.base" extends="shop.base">
+
+    <definition name="admin" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/tiles/admin.jsp"></put-attribute>
-        <put-attribute name="menu" value="/WEB-INF/views/tiles/adminMenu.jsp"></put-attribute>
     </definition>
 
-    <definition name="admin" extends="admin.base">
-        <put-attribute name="title" value="Admin"></put-attribute>
-    </definition>
-    <definition name="admin-newUser" extends="admin.base">
-        <put-attribute name="body" value="/WEB-INF/views/tiles/newuser.jsp"></put-attribute>
-    </definition>
-    <definition name="admin-registrationsuccess" extends="admin.base">
-        <put-attribute name="body" value="/WEB-INF/views/tiles/registrationsuccess.jsp"></put-attribute>
-    </definition>
-    <definition name="adminOrders" extends="admin.base">
+    <definition name="adminOrders" extends="shop.base">
         <put-attribute name="body" value="/WEB-INF/views/tiles/myOrders.jsp"></put-attribute>
     </definition>
-    <definition name="addProduct" extends="admin.base">
-        <put-attribute name="title" value="Shop homepage"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/tiles/addProduct.jsp"></put-attribute>
-    </definition>
-    <definition name="adminUsersList" extends="admin.base">
+
+    <definition name="adminUsersList" extends="shop.base">
         <put-attribute name="body" value="/WEB-INF/views/tiles/users.jsp"></put-attribute>
+    </definition>
+
+    <definition name="dba" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/dba.jsp"></put-attribute>
     </definition>
 
 
@@ -84,6 +78,12 @@
     <definition name="cart" extends="shop.base">
         <put-attribute name="title" value="Shop homepage"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/tiles/cart.jsp"></put-attribute>
+    </definition>
+
+
+    <definition name="addProduct" extends="shop.base">
+        <put-attribute name="title" value="Shop homepage"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/tiles/addProduct.jsp"></put-attribute>
     </definition>
 
 
