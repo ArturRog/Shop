@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService{
@@ -38,5 +40,9 @@ public class UserServiceImpl implements UserService{
 
 	public void updateUser(User user) {
 		dao.updateUser(user);
+	}
+
+	public List<User> getAllUsers(){
+		return dao.getAllUsers();
 	}
 }

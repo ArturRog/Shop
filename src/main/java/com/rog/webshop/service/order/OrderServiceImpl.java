@@ -5,6 +5,7 @@ import com.rog.webshop.dao.order.OrderDao;
 import com.rog.webshop.model.cart.Item;
 import com.rog.webshop.model.order.Order;
 import com.rog.webshop.model.product.Product;
+import com.rog.webshop.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,8 +41,8 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.findById(orderId);
     }
 
-    public List<Order> findByUser(Integer userId) {
-        return orderDao.findByUser(userId);
+    public List<Order> findByUser(User user) {
+        return orderDao.findByUser(user);
     }
 
     public List<Order> listOfOrders() {

@@ -5,9 +5,13 @@ import com.rog.webshop.exception.NoProductsFoundUnderCategoryException;
 import com.rog.webshop.exception.ProductNotFoundException;
 import com.rog.webshop.model.product.Category;
 import com.rog.webshop.model.product.Product;
+import com.rog.webshop.model.user.UserProfile;
 import com.rog.webshop.service.product.CategoryService;
 import com.rog.webshop.service.product.ProductService;
+import com.rog.webshop.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/products")
@@ -28,6 +33,9 @@ public class ProductController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private UserService userService;
 
 
     @RequestMapping
@@ -129,7 +137,27 @@ public class ProductController {
         return categoryService.getAll();
 
     }
+    public boolean isAdmin() {
 
+        Set<UserProfile> isAdmin = userService.findBySso(getPrincipal()).getUserProfiles();
+        for (UserProfile userProfile : isAdmin) {
+            if (userProfile.getType().equals("ADMIN"))
+                return true;
+        }
+        return false;
+    }
+
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
 
     @InitBinder
     public void initialiseBinder(WebDataBinder binder) {

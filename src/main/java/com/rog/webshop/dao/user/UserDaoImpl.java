@@ -7,8 +7,14 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
+
+    public List<User> getAllUsers() {
+        return super.findAll();
+    }
 
     public void save(User user) {
         persist(user);

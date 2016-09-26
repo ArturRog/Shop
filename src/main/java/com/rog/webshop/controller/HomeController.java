@@ -51,6 +51,11 @@ public class HomeController {
         model.addAttribute("user", getPrincipal());
         return "admin";
     }
+    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
+    public String adminGetAllUsers(ModelMap model) {
+        model.addAttribute("users", userService.getAllUsers());
+        return "adminUsersList";
+    }
 
     @RequestMapping(value = "/myOrders", method = RequestMethod.GET)
     public String recentOrders(ModelMap model) {
@@ -60,14 +65,16 @@ public class HomeController {
             throw new UsernameNotFoundException(getPrincipal());
         }
 
-        List<Order> orders = orderService.findByUser(user.getId());
+        List<Order> orders = isAdmin() ? orderService.listOfOrders() : orderService.findByUser(user);
+
 
         if (orders.isEmpty()) {
-//            model.addAttribute("orders", "You haven't ordered any products yet.");
+            model.addAttribute("noData", "There is no data to display.");
         }
+
         model.addAttribute("orders", orders);
 
-        return "myOrders";
+        return isAdmin()? "adminOrders" : "myOrders";
     }
 
     @RequestMapping(value = "/db", method = RequestMethod.GET)
@@ -103,6 +110,8 @@ public class HomeController {
         User user = new User();
         model.addAttribute("user", user);
 
+        if (isAdmin()) return "admin-newUser";
+
         return "newuser";
     }
 
@@ -130,6 +139,8 @@ public class HomeController {
 
         model.addAttribute("success", "User " + user.getFirstName() + " has been registered successfully");
 
+        if (isAdmin()) return "admin-registrationsuccess";
+
         return "registrationsuccess";
     }
 
@@ -146,6 +157,15 @@ public class HomeController {
         return userName;
     }
 
+
+    public boolean isAdmin() {
+        Set<UserProfile> isAdmin = userService.findBySso(getPrincipal()).getUserProfiles();
+        for (UserProfile userProfile : isAdmin) {
+            if (userProfile.getType().equals("ADMIN"))
+                return true;
+        }
+        return false;
+    }
 
     @ModelAttribute("roles")
     public List<UserProfile> initializeProfiles() {

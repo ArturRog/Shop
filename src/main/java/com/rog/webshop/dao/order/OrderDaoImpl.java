@@ -2,6 +2,7 @@ package com.rog.webshop.dao.order;
 
 import com.rog.webshop.dao.AbstractDao;
 import com.rog.webshop.model.order.Order;
+import com.rog.webshop.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -34,9 +35,9 @@ public class OrderDaoImpl extends AbstractDao<Integer,Order> implements OrderDao
 
 
     @SuppressWarnings("unchecked")
-    public List<Order> findByUser(Integer userId){
+    public List<Order> findByUser(User user){
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("user.id", userId));
+        criteria.add(Restrictions.eq("user", user));
         return (List<Order>) criteria.list();
     }
 

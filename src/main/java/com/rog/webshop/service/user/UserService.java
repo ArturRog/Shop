@@ -3,6 +3,8 @@ package com.rog.webshop.service.user;
 
 import com.rog.webshop.model.user.User;
 
+import java.util.List;
+
 public interface UserService {
 
 	void save(User user);
@@ -14,4 +16,5 @@ public interface UserService {
 	User findByEmail(String email);
 	void updateUser(User user);
 
+	List<User> getAllUsers();
 }
