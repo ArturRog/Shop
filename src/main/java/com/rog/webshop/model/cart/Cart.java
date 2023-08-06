@@ -12,6 +12,13 @@ public class Cart implements Serializable {
     private String cartId;
     private Map<Integer, Item> products;
     private BigDecimal totalValue;
+    
+    private PaymentStrategy paymentStrategy;
+
+    public Cart(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
 
     public Cart() {
         this.products = new HashMap<Integer, Item>();
@@ -90,14 +97,16 @@ public class Cart implements Serializable {
         } else {
             products.put(itemId, item);
         }
-        updateTotalValue();
+        paymentStrategy.pay(updateTotalValue());
+        
     }
 
-    public void updateTotalValue() {
+    public BigDecimal updateTotalValue() {
         totalValue = new BigDecimal(0);
         for (Item item : products.values()) {
             totalValue = totalValue.add(item.getTotalValue());
         }
+        return totalValue;
     }
 
     public void removeItem(Item item) {
